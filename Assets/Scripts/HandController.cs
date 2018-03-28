@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour {
 
-	
+    private void Start() {
+        
+    }
 
 
 }

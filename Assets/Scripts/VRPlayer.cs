@@ -11,9 +11,9 @@ public class VRPlayer : NetworkBehaviour {
     [SerializeField]
     private Transform Head;
     [SerializeField]
-    private Transform LeftHand;
+    private HandController LeftHand;
     [SerializeField]
-    private Transform RightHand;
+    private HandController RightHand;
 
     // from steamvr camera-rig
     [SerializeField]
@@ -31,18 +31,24 @@ public class VRPlayer : NetworkBehaviour {
     private void FixedUpdate() {
 
         if (UnityEngine.XR.XRSettings.enabled) { // was VRSettings.enabled
-            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            if (SteamVR_Rig == null) { //only want this to run first time
+                GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+                hmd = gm.hmd;
+                LeftController = gm.leftController;
+                RightController = gm.rightController;
+            }
+
             
         }
     }
 
     private void Update()
     {
-        LeftHand.position = LeftController.transform.position;
-        LeftHand.rotation = LeftController.transform.rotation;
+        LeftHand.gameObject.transform.position = LeftController.transform.position;
+        LeftHand.gameObject.transform.rotation = LeftController.transform.rotation;
 
-        RightHand.position = RightController.transform.position;
-        RightHand.rotation = RightController.transform.rotation;
+        RightHand.gameObject.transform.position = RightController.transform.position;
+        RightHand.gameObject.transform.rotation = RightController.transform.rotation;
     }
 
 }

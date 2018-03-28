@@ -165,8 +165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SteamVR_Rig: {fileID: 0}
   Head: {fileID: 4016599636268020}
-  LeftHand: {fileID: 4194525397661794}
-  RightHand: {fileID: 4056875938210476}
+  LeftHand: {fileID: 114170887121103996}
+  RightHand: {fileID: 114190813750800942}
   hmd: {fileID: 0}
   LeftController: {fileID: 0}
   RightController: {fileID: 0}

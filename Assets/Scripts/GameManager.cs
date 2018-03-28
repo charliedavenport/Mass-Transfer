@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour {
     public GameObject vrCameraRig;
     public GameObject nonVRCameraRig;
 
+    public SteamVR_TrackedObject hmd;
+    public SteamVR_TrackedObject leftController;
+    public SteamVR_TrackedObject rightController;
+
 
     public void enableVR() {
         StartCoroutine(doEnableVR());
