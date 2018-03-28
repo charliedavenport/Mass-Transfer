@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR;
+using UnityEngine.Networking;
 
-public class VRPlayer : MonoBehaviour {
+public class VRPlayer : NetworkBehaviour {
 
+    [SerializeField]
+    private Transform SteamVR_Rig;
     [SerializeField]
     private Transform Head;
     [SerializeField]
@@ -13,17 +17,32 @@ public class VRPlayer : MonoBehaviour {
 
     // from steamvr camera-rig
     [SerializeField]
-    private Transform LeftController; 
+    private SteamVR_TrackedObject hmd;
     [SerializeField]
-    private Transform RightController;
+    private SteamVR_TrackedObject LeftController; 
+    [SerializeField]
+    private SteamVR_TrackedObject RightController;
+
+
+    private void Start() {
+        
+    }
+
+    private void FixedUpdate() {
+
+        if (UnityEngine.XR.XRSettings.enabled) { // was VRSettings.enabled
+            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            
+        }
+    }
 
     private void Update()
     {
-        LeftHand.position = LeftController.position;
-        LeftHand.rotation = LeftController.rotation;
+        LeftHand.position = LeftController.transform.position;
+        LeftHand.rotation = LeftController.transform.rotation;
 
-        RightHand.position = RightController.position;
-        RightHand.rotation = RightController.rotation;
+        RightHand.position = RightController.transform.position;
+        RightHand.rotation = RightController.transform.rotation;
     }
 
 }

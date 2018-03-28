@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VR;
 
-public class CanvasManager : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
     public GameObject vrCameraRig;
     public GameObject nonVRCameraRig;
