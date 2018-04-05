@@ -6,7 +6,9 @@ using UnityEngine.Networking;
 
 public class VRPlayer : NetworkBehaviour {
 
-    
+
+    public enum LocomotionMode { TELEPORT, JOYSTICK_DRIVE };
+
     [SerializeField]
     private Transform Head;
     [SerializeField]
@@ -48,7 +50,7 @@ public class VRPlayer : NetworkBehaviour {
 
     private void Start() {
         // ??????
-        Head.transform.position = new Vector3(0, 2, 0);
+        //Head.transform.position = new Vector3(0, 2, 0);
     }
 
     private void FixedUpdate() {
