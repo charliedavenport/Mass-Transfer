@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 114708206375922700}
   m_Layer: 0
   m_Name: VRPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,10 +163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce21aeb4a6673924eb4e42140edf0f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SteamVR_Rig: {fileID: 0}
   Head: {fileID: 4016599636268020}
   LeftHand: {fileID: 114170887121103996}
   RightHand: {fileID: 114190813750800942}
+  SteamVR_Rig: {fileID: 0}
   hmd: {fileID: 0}
   LeftController: {fileID: 0}
   RightController: {fileID: 0}
