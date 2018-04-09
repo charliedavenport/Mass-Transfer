@@ -196,7 +196,7 @@ public class VRPlayer : NetworkBehaviour {
 
     public void drive(Vector2 rightJoystick)
     {
-
+        //need to lock y pos
        float rightSpeed = Mathf.Clamp(rightJoystick.y, 0, 1); //y^ x> 
         Vector3 rightDirection = RightHand.transform.forward;
         Vector3 displacement = (rightDirection * rightSpeed) * Time.deltaTime;
