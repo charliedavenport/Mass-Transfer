@@ -19,6 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4020080132452944}
+  - component: {fileID: 114697144432574276}
+  - component: {fileID: 114360052448285724}
   m_Layer: 0
   m_Name: BathTub
   m_TagString: Untagged
@@ -85,6 +87,7 @@ GameObject:
   - component: {fileID: 4695715105236076}
   - component: {fileID: 33169307315172404}
   - component: {fileID: 23347298785121328}
+  - component: {fileID: 65544633178930106}
   m_Layer: 0
   m_Name: Valve
   m_TagString: Untagged
@@ -284,3 +287,61 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675610383871582}
   m_Mesh: {fileID: 4300002, guid: 085980a1ac0ed1147af78643edbc1074, type: 3}
+--- !u!65 &65544633178930106
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939106747862624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10793085, y: 0.11952118, z: 0.026031325}
+  m_Center: {x: 0.0009015868, y: 0.0048050787, z: 0.0030156344}
+--- !u!114 &114360052448285724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1329506855395704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c5fa2fab3568b04ab4a0e5f86951eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  valveCollider: {fileID: 0}
+  flowRate: 0
+  valveGUI: {fileID: 0}
+--- !u!114 &114697144432574276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1329506855395704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 206
+    i1: 219
+    i2: 224
+    i3: 198
+    i4: 88
+    i5: 247
+    i6: 196
+    i7: 100
+    i8: 123
+    i9: 139
+    i10: 104
+    i11: 40
+    i12: 252
+    i13: 18
+    i14: 7
+    i15: 181
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1

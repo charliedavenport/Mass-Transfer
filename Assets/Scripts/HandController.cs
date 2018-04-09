@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour {
 
-    private void Start() {
+    [SerializeField]
+    private Transform boxCollider;
+
+    private void FixedUpdate() {
+        
+    }
+
+    private void OnTriggerEnter(Collider other) {
         
     }
 
