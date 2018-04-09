@@ -26,6 +26,8 @@ public class VRPlayer : NetworkBehaviour {
     [SerializeField]
     private SteamVR_TrackedObject RightController;
 
+    private GameManager gm;
+
     [SyncVar]
     Vector3 headPos;
     [SyncVar]
@@ -48,9 +50,8 @@ public class VRPlayer : NetworkBehaviour {
         b.rotation = a.rotation;
     }
 
-    private void Start() {
-        // ??????
-        //Head.transform.position = new Vector3(0, 2, 0);
+    private void Awake() {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void FixedUpdate() {
@@ -61,7 +62,6 @@ public class VRPlayer : NetworkBehaviour {
 
                 if (SteamVR_Rig == null) { //only want this to run first time
 
-                    GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
                     SteamVR_Rig = gm.vrCameraRig.transform;
                     hmd = gm.hmd;
                     LeftController = gm.leftController;
@@ -83,8 +83,15 @@ public class VRPlayer : NetworkBehaviour {
                 // enable flying controls for non-VR camera
                 float vertical = Input.GetAxis("Vertical");
                 float horizontal = Input.GetAxis("Horizontal");
-                transform.Translate(vertical * Time.fixedDeltaTime * Vector3.forward);
-                transform.Translate(horizontal * Time.fixedDeltaTime * Vector3.right);
+                float mouseY = -Input.GetAxis("Mouse Y");
+                float mouseX = Input.GetAxis("Mouse X");
+
+                var cam = gm.nonVRCameraRig;
+
+                cam.transform.Translate(vertical * Time.fixedDeltaTime * Vector3.forward);
+                cam.transform.Translate(horizontal * Time.fixedDeltaTime * Vector3.right);
+                //cam.transform.Rotate
+
             }
             // local player calls command to run on server
             CmdSyncPlayer(Head.transform.position, Head.transform.rotation, // sync head
