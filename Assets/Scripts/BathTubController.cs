@@ -5,12 +5,15 @@ using UnityEngine.Networking;
 
 public class BathTubController : NetworkBehaviour {
 
+
     [SerializeField]
-    private Transform valveCollider;
+    ValveController valeController;
+    [SerializeField]
+    private ValveGUIController valveGUI;
     [SerializeField]
     private float flowRate;
     [SerializeField]
-    private Canvas valveGUI;
+    private float valveAngle;
 
     [SyncVar]
     float flowRate_sync;
@@ -19,15 +22,19 @@ public class BathTubController : NetworkBehaviour {
 
     private void Awake() {
         flowRate = 0f;
+        valveAngle = 0f;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void FixedUpdate() {
         if (isLocalPlayer) {
+            valveGUI.setFlowRate(flowRate);
             CmdSyncBathTub(flowRate);
         }
         else { // not local player
             flowRate = flowRate_sync;
+            // not sure about this line... need to check if this is necessary
+            valveGUI.setFlowRate(flowRate);
         }
     }
 
