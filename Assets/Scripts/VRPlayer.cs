@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class VRPlayer : NetworkBehaviour {
 
 
-    public enum LocomotionMode { TELEPORT, JOYSTICK_DRIVE };
+    //public enum LocomotionMode { TELEPORT, DRIVE };
 
     [SerializeField]
     private Transform Head;
@@ -27,6 +27,7 @@ public class VRPlayer : NetworkBehaviour {
     private SteamVR_TrackedObject RightController;
 
     private GameManager gm;
+   // public GUIController gui;
 
     [SyncVar]
     Vector3 headPos;
@@ -76,6 +77,7 @@ public class VRPlayer : NetworkBehaviour {
                 //TODO: add Transform feet and find feet position here
 
                 //TODO: handle controller inputs
+                handleControllerInputs();
 
 
             }//VRSettings.enabled
@@ -144,6 +146,76 @@ public class VRPlayer : NetworkBehaviour {
 
         //RightHand.gameObject.transform.position = RightController.transform.position;
         //RightHand.gameObject.transform.rotation = RightController.transform.rotation;
+    }
+
+    private void handleControllerInputs()
+    {
+        int indexLeft = (int)LeftController.index;
+        int indexRight = (int)RightController.index;
+
+
+        LeftHand.controllerVelocity = getControllerVelocity(LeftController);
+        RightHand.controllerVelocity = getControllerVelocity(RightController);
+        LeftHand.controllerAngularVelocity = getControllerAngularVelocity(LeftController);
+        RightHand.controllerAngularVelocity = getControllerAngularVelocity(RightController);
+
+        float triggerLeft = getTrigger(LeftController);
+        float triggerRight = getTrigger(RightController);
+        bool a_btn = SteamVR_Controller.Input(indexRight).GetPressDown(Valve.VR.EVRButtonId.k_EButton_A);
+      //  interactionZone.a_btn = a_btn;
+
+        Vector2 joyLeft = getJoystick(LeftController);
+       // gui.handleInput(joyLeft);
+        Vector2 joyRight = getJoystick(RightController);
+        drive(joyRight);
+
+
+    }
+
+    private float getTrigger(SteamVR_TrackedObject controller)
+    {
+        return controller.index >= 0 ? SteamVR_Controller.Input((int)controller.index).GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger).magnitude : 0.0f;
+    }
+
+    private Vector2 getJoystick(SteamVR_TrackedObject controller)
+    {
+        return controller.index >= 0 ? SteamVR_Controller.Input((int)controller.index).GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad) : Vector2.zero;
+    }
+
+    private Vector3 getControllerVelocity(SteamVR_TrackedObject controller)
+    {
+        Vector3 controllerVelocity = controller.index >= 0 ? SteamVR_Controller.Input((int)controller.index).velocity : Vector3.zero;
+        return SteamVR_Rig.localToWorldMatrix.MultiplyVector(controllerVelocity.normalized) * controllerVelocity.magnitude;
+    }
+
+    private Vector3 getControllerAngularVelocity(SteamVR_TrackedObject controller)
+    {
+        Vector3 angularVelocity = controller.index >= 0 ? SteamVR_Controller.Input((int)controller.index).angularVelocity : Vector3.zero;
+        return SteamVR_Rig.localToWorldMatrix.MultiplyVector(angularVelocity.normalized) * angularVelocity.magnitude;
+    }
+
+    public void drive(Vector2 rightJoystick)
+    {
+
+       float rightSpeed = Mathf.Clamp(rightJoystick.y, 0, 1); //y^ x> 
+        Vector3 rightDirection = RightHand.transform.forward;
+        Vector3 displacement = (rightDirection * rightSpeed) * Time.deltaTime;
+        this.transform.Translate(displacement, Space.World);
+        
+        float rightSpeed2 = Mathf.Clamp(-(rightJoystick.y), 0, 1); //y^ x> 
+        Vector3 rightDirection2 = -(RightHand.transform.forward);
+        Vector3 displacement2 = (rightDirection2 * rightSpeed2) * Time.deltaTime;
+        this.transform.Translate(displacement2, Space.World);
+
+        float rightSpeed3 = Mathf.Clamp(rightJoystick.x, 0, 1); //y^ x> 
+        Vector3 rightDirection3 = RightHand.transform.right;
+        Vector3 displacement3 = (rightDirection3 * rightSpeed3) * Time.deltaTime;
+        this.transform.Translate(displacement3, Space.World);
+
+        float rightSpeed4 = Mathf.Clamp(-(rightJoystick.x), 0, 1); //y^ x> 
+        Vector3 rightDirection4 = -(RightHand.transform.right);
+        Vector3 displacement4 = (rightDirection4 * rightSpeed4) * Time.deltaTime;
+        this.transform.Translate(displacement4, Space.World);
     }
 
 }
