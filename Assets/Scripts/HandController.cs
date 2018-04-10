@@ -4,19 +4,45 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour {
 
-    [SerializeField]
-    private Transform boxCollider;
-    public VRPlayer player;
-    public Vector3 controllerVelocity;
-    public Vector3 controllerAngularVelocity;
+	[SerializeField]
+	private VRPlayer player;
+	public Vector3 controllerVelocity;
+	public Vector3 controllerAngularVelocity;
+	private ValveController currentValve;
 
-    private void FixedUpdate() {
-        
+	private Quaternion stored_rot;
+
+	private void Awake() {
+		currentValve = null;
+	}
+
+	private void Start() {
+		// get rot on first frame
+		stored_rot = this.transform.rotation;
+	}
+
+	private void FixedUpdate() {
+		if (currentValve != null) {
+			// rotate valve using controller
+			Quaternion current_rot = this.transform.rotation;
+			float current_rot_y = current_rot.eulerAngles.y;
+			float stored_rot_y = stored_rot.eulerAngles.y;
+			float diff = current_rot_y - stored_rot_y;
+
+			currentValve.rotateValve(diff);
+
+			stored_rot = current_rot;
+		}
+
     }
 
-    private void OnTriggerEnter(Collider other) {
-        
-    }
+    public void grabValve(ValveController valve) {
+		currentValve = valve;
+	}
+
+	public void releaseValve() {
+		currentValve = null;
+	}
 
 
 }

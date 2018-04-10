@@ -10,11 +10,13 @@ ModelImporter:
     100004: Faucet
     100006: Tub
     100008: Valve
+    100010: Lamp
     400000: //RootNode
     400002: Camera
     400004: Faucet
     400006: Tub
     400008: Valve
+    400010: Lamp
     2000000: Camera
     2100000: No Name
     2100002: Material.001
@@ -27,6 +29,7 @@ ModelImporter:
     4300000: Valve
     4300002: Tub
     4300004: Faucet
+    10800000: Lamp
   externalObjects: {}
   materials:
     importMaterials: 1
