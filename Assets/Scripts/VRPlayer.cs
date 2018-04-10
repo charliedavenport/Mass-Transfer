@@ -67,7 +67,7 @@ public class VRPlayer : NetworkBehaviour {
                     hmd = gm.hmd;
                     LeftController = gm.leftController;
                     RightController = gm.rightController;
-
+                    RightHand.GetComponent<HandController>().setControllerIndex((int)RightController.index);
                 }
 
                 copyTransform(this.transform, SteamVR_Rig.transform);

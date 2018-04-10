@@ -10,45 +10,65 @@ public class HandController : MonoBehaviour {
 	public Vector3 controllerAngularVelocity;
 	private ValveController currentValve;
 
-	private Quaternion stored_rot;	
+    private int controllerIndex;
+
+    public bool grabbing;
+
+    public void setControllerIndex(int ind) {
+        controllerIndex = ind;
+    }
 
 	private void Awake() {
 		currentValve = null;
 	}
 
 	private void Start() {
+        grabbing = false;
 		// get rot on first frame
-		stored_rot = this.transform.rotation;
+		//stored_rot = this.transform.rotation;
 	}
 
-	private void FixedUpdate() {
-		
-		if (currentValve != null) {
-			int indexRight = (int)player.RightController.index;
-			bool a_btn = SteamVR_Controller.Input(indexRight).GetPress(Valve.VR.EVRButtonId.k_EButton_A);
-			if (a_btn)
+	private void Update() {
+
+        if (currentValve != null) {
+			bool a_btn_down = SteamVR_Controller.Input(controllerIndex).GetPressDown(Valve.VR.EVRButtonId.k_EButton_A);
+			if (a_btn_down && !grabbing)
 			{
-				// rotate valve using controller
-				Quaternion current_rot = this.transform.rotation;
-				float current_rot_y = current_rot.eulerAngles.y;
-				float stored_rot_y = stored_rot.eulerAngles.y;
-				float diff = current_rot_y - stored_rot_y;
+                //currentValve.rotateValve(0f);
 
-				currentValve.rotateValve(diff);
-
-				stored_rot = current_rot;
+                StartCoroutine(doGrabValve());
 			}
 		}
 
+
     }
 
-    public void grabValve(ValveController valve) {
+    public void selectValve(ValveController valve) {
 		currentValve = valve;
-	}
+
+    }
 
 	public void releaseValve() {
 		currentValve = null;
 	}
+
+    IEnumerator doGrabValve() {
+        grabbing = true;
+        while (true) {
+            bool a_btn_up = SteamVR_Controller.Input(controllerIndex).GetPressUp(Valve.VR.EVRButtonId.k_EButton_A);
+            if (a_btn_up) {
+                Debug.Log("a_btn_up");
+                currentValve.deselect();
+                break;
+            }
+
+            float offset = Vector3.Dot((transform.position - currentValve.transform.position), Vector3.right);
+            currentValve.rotateValve(offset * Mathf.Rad2Deg);
+
+            yield return new WaitForFixedUpdate();
+        }
+        grabbing = false;
+    }
 
 
 }
