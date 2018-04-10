@@ -6,20 +6,27 @@ using UnityEngine.UI;
 public class ValveGUIController : MonoBehaviour {
 
     [SerializeField]
-    private Text flowRateText;
+    private Text flowInText;
+    [SerializeField]
+    private Text flowOutText;
 
-    private float flowRate;
+    private float flowInRate;
+    private float flowOutRate;
 
-    public void setFlowRate(float f) {
-        flowRate = f;
+    public void setFlowRate(float inRate, float outRate) {
+        flowInRate = inRate;
+        flowOutRate = outRate;
     }
 
     private void Awake() {
-        flowRate = 0f;
+        flowInRate = 0f;
+        flowOutRate = 0f;
     }
 
     private void Update() {
-        flowRateText.text = "Flow Rate: " + flowRate.ToString("F");
+        flowInText.text = "Flow In Rate: " + flowInRate.ToString("F");
+        flowOutText.text = "Flow Out Rate: " + flowOutRate.ToString("F");
+
     }
 
 

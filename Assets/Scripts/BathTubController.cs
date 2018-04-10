@@ -28,13 +28,13 @@ public class BathTubController : NetworkBehaviour {
 
     private void FixedUpdate() {
         if (isLocalPlayer) {
-            valveGUI.setFlowRate(flowRate);
+            valveGUI.setFlowRate(flowRate, 0f);
             CmdSyncBathTub(flowRate);
         }
         else { // not local player
             flowRate = flowRate_sync;
             // not sure about this line... need to check if this is necessary
-            valveGUI.setFlowRate(flowRate);
+            valveGUI.setFlowRate(flowRate, 0f);
         }
     }
 
