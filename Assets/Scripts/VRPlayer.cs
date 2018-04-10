@@ -24,7 +24,7 @@ public class VRPlayer : NetworkBehaviour {
     [SerializeField]
     private SteamVR_TrackedObject LeftController; 
     [SerializeField]
-    private SteamVR_TrackedObject RightController;
+    public SteamVR_TrackedObject RightController;
 
     private GameManager gm;
    // public GUIController gui;
@@ -67,6 +67,7 @@ public class VRPlayer : NetworkBehaviour {
                     hmd = gm.hmd;
                     LeftController = gm.leftController;
                     RightController = gm.rightController;
+
                 }
 
                 copyTransform(this.transform, SteamVR_Rig.transform);

@@ -10,7 +10,7 @@ public class HandController : MonoBehaviour {
 	public Vector3 controllerAngularVelocity;
 	private ValveController currentValve;
 
-	private Quaternion stored_rot;
+	private Quaternion stored_rot;	
 
 	private void Awake() {
 		currentValve = null;
@@ -22,16 +22,22 @@ public class HandController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
+		
 		if (currentValve != null) {
-			// rotate valve using controller
-			Quaternion current_rot = this.transform.rotation;
-			float current_rot_y = current_rot.eulerAngles.y;
-			float stored_rot_y = stored_rot.eulerAngles.y;
-			float diff = current_rot_y - stored_rot_y;
+			int indexRight = (int)player.RightController.index;
+			bool a_btn = SteamVR_Controller.Input(indexRight).GetPress(Valve.VR.EVRButtonId.k_EButton_A);
+			if (a_btn)
+			{
+				// rotate valve using controller
+				Quaternion current_rot = this.transform.rotation;
+				float current_rot_y = current_rot.eulerAngles.y;
+				float stored_rot_y = stored_rot.eulerAngles.y;
+				float diff = current_rot_y - stored_rot_y;
 
-			currentValve.rotateValve(diff);
+				currentValve.rotateValve(diff);
 
-			stored_rot = current_rot;
+				stored_rot = current_rot;
+			}
 		}
 
     }

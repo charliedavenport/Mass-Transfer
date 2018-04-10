@@ -9,7 +9,14 @@ public class ValveController : MonoBehaviour {
 	[SerializeField]
 	private Material selectedMat;
 
-    private void OnTriggerEnter(Collider other) {
+	private Quaternion start_rot;
+
+	private void Start()
+	{
+		start_rot = this.transform.rotation;
+	}
+
+	private void OnTriggerEnter(Collider other) {
 		//Debug.Log("OnTriggerEnter");
         if (other.gameObject.tag == "Player") {
 			//change valve material to selected
@@ -30,7 +37,7 @@ public class ValveController : MonoBehaviour {
 	}
 
 	public void rotateValve(float angle) {
-		transform.Rotate(new Vector3(0, 0, angle));
+		transform.Rotate(new Vector3(0, angle, 0), Space.World);
 
 	}
 
