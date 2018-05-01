@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class ValveController : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject bathTub;
+
 	[SerializeField]
 	private Material defaultMat;
 	[SerializeField]
 	private Material selectedMat;
-
-	private float start_rot_y;
-    private Quaternion min_rot;
-    private Quaternion max_rot;
-
-    float min_y, max_y;
-
+    private Quaternion start_rot;
     private float total_angle;
-    private float max_angle;
-    // assume min_angle is 0
+
+    [SerializeField]
+    private float flow_rate; //in or out depending on which valve this is
 
     public void select() {
         GetComponent<Renderer>().material = selectedMat;
@@ -31,11 +29,9 @@ public class ValveController : MonoBehaviour {
 	{
         total_angle = 0f;
 
-        start_rot_y = this.transform.eulerAngles.y;
-        min_y = start_rot_y;
-        max_y = start_rot_y + 180;
-        min_rot = this.transform.rotation;
-        max_rot = Quaternion.Euler(min_rot.eulerAngles.x, max_y, min_rot.eulerAngles.z);
+        start_rot = transform.rotation;
+
+        bathTub = GameObject.Find("BathTub");
 	}
 
 	private void OnTriggerEnter(Collider other) {
@@ -51,6 +47,11 @@ public class ValveController : MonoBehaviour {
 	private void OnTriggerExit(Collider other) {
 		if (other.gameObject.tag == "Player") {
 
+            if (!other.GetComponent<HandController>().grabbing)
+            { // not grabbing
+                deselect();
+                other.GetComponent<HandController>().releaseValve();
+            }
 			//change valve material to default
 			//GetComponent<Renderer>().material = defaultMat;
 
@@ -59,17 +60,33 @@ public class ValveController : MonoBehaviour {
 	}
 
 	public void rotateValve(float angle) {
+
+        float max_angle = -180f;
         
         total_angle += angle;
-        if (total_angle <= max_angle) {
+
+        //Debug.Log(total_angle);
+
+        if (total_angle < max_angle)
+        {
+            total_angle = max_angle;
+            transform.rotation = Quaternion.AngleAxis(max_angle, Vector3.up) * start_rot;
+        }
+        else if (total_angle > 0)
+        {
+            total_angle = 0;
+            transform.rotation = start_rot;
+        }
+        else
+        {
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.up) * transform.rotation;
         }
-        else {
-            total_angle = max_angle;
-        }
+
+        //update flow rate
+        flow_rate = -total_angle; // ranges from 0 to 90 right now
 
 	}
 
-  
+    public float getFlowRate() { return flow_rate; }
 
 }

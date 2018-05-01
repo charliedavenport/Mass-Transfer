@@ -9,6 +9,10 @@ public class ValveGUIController : MonoBehaviour {
     private Text flowInText;
     [SerializeField]
     private Text flowOutText;
+    [SerializeField]
+    private ValveController valve_in;
+    [SerializeField]
+    private ValveController valve_out;
 
     private float flowInRate;
     private float flowOutRate;
@@ -24,8 +28,8 @@ public class ValveGUIController : MonoBehaviour {
     }
 
     private void Update() {
-        flowInText.text = "Flow In Rate: " + flowInRate.ToString("F");
-        flowOutText.text = "Flow Out Rate: " + flowOutRate.ToString("F");
+        flowInText.text = "Flow In Rate: " + valve_in.getFlowRate().ToString("F");
+        flowOutText.text = "Flow Out Rate: " + valve_out.getFlowRate().ToString("F");
 
     }
 

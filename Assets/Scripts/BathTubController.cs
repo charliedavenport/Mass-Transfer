@@ -11,7 +11,9 @@ public class BathTubController : NetworkBehaviour {
     [SerializeField]
     private ValveGUIController valveGUI;
     [SerializeField]
-    private float flowRate;
+    private float flowInRate;
+    [SerializeField]
+    private float flowOutRate;
     [SerializeField]
     private float valveAngle;
 
@@ -21,26 +23,36 @@ public class BathTubController : NetworkBehaviour {
     private GameManager gm;
 
     private void Awake() {
-        flowRate = 0f;
+        flowInRate = 0f;
+        flowOutRate = 0f;
         valveAngle = 0f;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void FixedUpdate() {
         if (isLocalPlayer) {
-            valveGUI.setFlowRate(flowRate, 0f);
-            CmdSyncBathTub(flowRate);
+            valveGUI.setFlowRate(flowInRate, flowOutRate);
+            CmdSyncBathTub(flowInRate);
         }
         else { // not local player
-            flowRate = flowRate_sync;
+            flowInRate = flowRate_sync;
             // not sure about this line... need to check if this is necessary
-            valveGUI.setFlowRate(flowRate, 0f);
+            valveGUI.setFlowRate(flowInRate, 0f);
         }
+    }
+
+    public void setFlowInRate(float f)
+    {
+        flowInRate = f;
+    }
+    public void setFlowOutrate(float f)
+    {
+        flowOutRate = f;
     }
 
     [Command]
     void CmdSyncBathTub(float fRate) {
-        flowRate = fRate;
+        flowInRate = fRate;
         //set syncvars
         flowRate_sync = fRate;
     }
