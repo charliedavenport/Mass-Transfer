@@ -9,6 +9,10 @@ public class ValveGUIController : MonoBehaviour {
     private Text flowInText;
     [SerializeField]
     private Text flowOutText;
+    [SerializeField]
+    private GameObject valve_in;
+    [SerializeField]
+    private GameObject valve_out;
 
     private float flowInRate;
     private float flowOutRate;

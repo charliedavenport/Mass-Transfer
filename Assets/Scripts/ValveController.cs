@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class ValveController : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject bathTub;
+
 	[SerializeField]
 	private Material defaultMat;
 	[SerializeField]
 	private Material selectedMat;
-
-	private float start_rot_y;
-    private Quaternion min_rot;
-    private Quaternion max_rot;
-
-    float min_y, max_y;
-
+    private Quaternion start_rot;
     private float total_angle;
-    private float max_angle;
-    // assume min_angle is 0
 
     public void select() {
         GetComponent<Renderer>().material = selectedMat;
@@ -31,12 +26,9 @@ public class ValveController : MonoBehaviour {
 	{
         total_angle = 0f;
 
-        start_rot_y = this.transform.eulerAngles.y;
-        Debug.Log(start_rot_y);
-        min_y = start_rot_y;
-        max_y = start_rot_y + 90;
-        min_rot = this.transform.rotation;
-        max_rot = Quaternion.Euler(min_rot.eulerAngles.x, max_y, min_rot.eulerAngles.z);
+        start_rot = transform.rotation;
+
+        bathTub = GameObject.Find("BathTub");
 	}
 
 	private void OnTriggerEnter(Collider other) {
@@ -65,22 +57,30 @@ public class ValveController : MonoBehaviour {
 	}
 
 	public void rotateValve(float angle) {
+
+        float max_angle = -180f;
         
         total_angle += angle;
-        float relative_angle = start_rot_y + total_angle;
-        if (relative_angle <= max_y && relative_angle <= min_y) {
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.up) * transform.rotation;
-            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
-        }
-        else if (relative_angle > max_y) {
-            Debug.Log("max angle");
-            total_angle = max_angle;
-        }
-        else if (relative_angle < min_y)
+
+        //Debug.Log(total_angle);
+
+        if (total_angle < max_angle)
         {
-            Debug.Log("min angle");
-            total_angle = min_y;
+            total_angle = max_angle;
+            transform.rotation = Quaternion.AngleAxis(max_angle, Vector3.up) * start_rot;
         }
+        else if (total_angle > 0)
+        {
+            total_angle = 0;
+            transform.rotation = start_rot;
+        }
+        else
+        {
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.up) * transform.rotation;
+        }
+
+        
+
 
 	}
 
