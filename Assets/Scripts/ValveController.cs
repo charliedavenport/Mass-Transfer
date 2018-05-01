@@ -14,6 +14,9 @@ public class ValveController : MonoBehaviour {
     private Quaternion start_rot;
     private float total_angle;
 
+    [SerializeField]
+    private float flow_rate; //in or out depending on which valve this is
+
     public void select() {
         GetComponent<Renderer>().material = selectedMat;
     }
@@ -79,11 +82,11 @@ public class ValveController : MonoBehaviour {
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.up) * transform.rotation;
         }
 
-        
-
+        //update flow rate
+        flow_rate = -total_angle; // ranges from 0 to 90 right now
 
 	}
 
-  
+    public float getFlowRate() { return flow_rate; }
 
 }

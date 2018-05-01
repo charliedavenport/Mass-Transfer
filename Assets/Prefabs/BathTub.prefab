@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33937144582815478}
   - component: {fileID: 23660414147823722}
   m_Layer: 0
-  m_Name: Faucet.002
+  m_Name: FaucetOut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 33740660048266850}
   - component: {fileID: 23446938080913958}
   m_Layer: 0
-  m_Name: Faucet.001
+  m_Name: FaucetIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 54529080530675868}
   - component: {fileID: 114375749982656362}
   m_Layer: 0
-  m_Name: Valve.001
+  m_Name: ValveOut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 114346961898430056}
   - component: {fileID: 54029897071408198}
   m_Layer: 0
-  m_Name: Valve
+  m_Name: ValveIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,6 +592,7 @@ MonoBehaviour:
   bathTub: {fileID: 0}
   defaultMat: {fileID: 2100000, guid: e0c83c2eb67c82a48841b2821b1c31ab, type: 2}
   selectedMat: {fileID: 2100000, guid: e6ccd1537182b3b4499d876341fce1bb, type: 2}
+  flow_rate: 0
 --- !u!114 &114360052448285724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -622,6 +623,7 @@ MonoBehaviour:
   bathTub: {fileID: 0}
   defaultMat: {fileID: 2100000, guid: e0c83c2eb67c82a48841b2821b1c31ab, type: 2}
   selectedMat: {fileID: 2100000, guid: e6ccd1537182b3b4499d876341fce1bb, type: 2}
+  flow_rate: 0
 --- !u!114 &114386592235372500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -824,6 +826,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowInText: {fileID: 114533370999525924}
   flowOutText: {fileID: 114386592235372500}
+  valve_in: {fileID: 114346961898430056}
+  valve_out: {fileID: 114375749982656362}
 --- !u!222 &222293229169929376
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -920,8 +924,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0.5, y: 0.00000029802322}
-  m_SizeDelta: {x: 100, y: 16.9021}
+  m_AnchoredPosition: {x: 0.5369, y: 0.00000029802322}
+  m_SizeDelta: {x: 107.3896, y: 16.9021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224667221291218698
 RectTransform:
@@ -940,8 +944,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.2526, y: 1.281}
-  m_SizeDelta: {x: 2.6949, y: 1}
+  m_AnchoredPosition: {x: -0.2116, y: 1.281}
+  m_SizeDelta: {x: 2.7769, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224815648324062074
 RectTransform:
@@ -949,16 +953,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1141904490993622}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -1.076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224608251355645166}
   m_Father: {fileID: 224667221291218698}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 2.203, y: 0}
+  m_AnchoredPosition: {x: 1.648, y: -0.867}
   m_SizeDelta: {x: 0.9691, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
