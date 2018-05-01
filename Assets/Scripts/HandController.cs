@@ -8,6 +8,7 @@ public class HandController : MonoBehaviour {
 	private VRPlayer player;
 	public Vector3 controllerVelocity;
 	public Vector3 controllerAngularVelocity;
+    [SerializeField]
 	private ValveController currentValve;
 
     private int controllerIndex;
@@ -49,21 +50,31 @@ public class HandController : MonoBehaviour {
     }
 
 	public void releaseValve() {
+        if (currentValve != null)
+        {
+            currentValve.deselect();
+        }
 		currentValve = null;
 	}
 
     IEnumerator doGrabValve() {
+
+        float prev_offset = 0f;
+
         grabbing = true;
         while (true) {
             bool a_btn_up = SteamVR_Controller.Input(controllerIndex).GetPressUp(Valve.VR.EVRButtonId.k_EButton_A);
             if (a_btn_up) {
-                Debug.Log("a_btn_up");
-                currentValve.deselect();
+                //Debug.Log("a_btn_up");
+                releaseValve();
                 break;
             }
 
             float offset = Vector3.Dot((transform.position - currentValve.transform.position), Vector3.right);
-            currentValve.rotateValve(offset * Mathf.Rad2Deg);
+            float temp = offset;
+            offset -= prev_offset;
+            prev_offset = temp;
+            currentValve.rotateValve(-offset * Mathf.Rad2Deg * 10f);
 
             yield return new WaitForFixedUpdate();
         }
