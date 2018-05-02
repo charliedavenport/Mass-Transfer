@@ -46,6 +46,16 @@ public class HandController : MonoBehaviour {
 			}
 		}
 
+        if (currentSlider != null)
+        {
+            bool a_btn_down = SteamVR_Controller.Input(controllerIndex).GetPressDown(Valve.VR.EVRButtonId.k_EButton_A);
+            if (a_btn_down && !grabbingSlider)
+            {
+                //currentValve.rotateValve(0f);
+
+                StartCoroutine(doGrabSlider());
+            }
+        }
 
     }
 
