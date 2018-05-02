@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class CupController : NetworkBehaviour
-{/*
+{
 
 
     [SerializeField]
@@ -12,7 +12,7 @@ public class CupController : NetworkBehaviour
     [SerializeField]
     SliderController humiditySlider;//valveOut
     [SerializeField]
-    SliderController timeSlider;//new
+    SliderController pressureSlider;//new
     //[SerializeField]
     //WaterController water;
     [SerializeField]
@@ -22,7 +22,7 @@ public class CupController : NetworkBehaviour
     [SerializeField]
     private float humidityValue;
     [SerializeField]
-    private float timeValue;
+    private float pressureValue;
     [SerializeField]
     private float valveAngle;
 
@@ -38,7 +38,7 @@ public class CupController : NetworkBehaviour
     {
         tempValue = 0f;
         humidityValue = 0f;
-        timeValue = 0f;
+        pressureValue = 0f;
         valveAngle = 0f;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
@@ -48,13 +48,13 @@ public class CupController : NetworkBehaviour
 
         tempValue = tempSlider.getSliderOutput();
         humidityValue = humiditySlider.getSliderOutput();
-        timeValue = timeSlider.getSliderOutput();
+        pressureValue = pressureSlider.getSliderOutput();
 
         /*float dV = flowInRate - flowOutRate; // difference in volume
         float dy = dV / (width * length); // difference in height;
         Debug.Log(dy);
         water.incrementWaterLevel(dy);*/
-/*
+
         if (isLocalPlayer)
         {
             /*
@@ -68,7 +68,7 @@ public class CupController : NetworkBehaviour
 
             //valveGUI.setFlowRate(flowInRate, flowOutRate);
             //(flowInRate);
-/*        }
+        }
         else
         { // not local player
             //flowInRate = flowRate_sync;

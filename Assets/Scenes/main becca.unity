@@ -658,7 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32495dfbc0631db41a986437bfc159e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cup: {fileID: 0}
+  cup: {fileID: 2052127532}
   flow_ps: {fileID: 0}
   defaultMat: {fileID: 2100000, guid: 48c1edf155dab7443ba91aab4fbce886, type: 2}
   selectedMat: {fileID: 2100000, guid: e6ccd1537182b3b4499d876341fce1bb, type: 2}
@@ -2096,7 +2096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32495dfbc0631db41a986437bfc159e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cup: {fileID: 0}
+  cup: {fileID: 2052127532}
   flow_ps: {fileID: 0}
   defaultMat: {fileID: 2100000, guid: e0c83c2eb67c82a48841b2821b1c31ab, type: 2}
   selectedMat: {fileID: 2100000, guid: e6ccd1537182b3b4499d876341fce1bb, type: 2}
@@ -2379,7 +2379,7 @@ GameObject:
   - component: {fileID: 1577271479}
   - component: {fileID: 1577271478}
   m_Layer: 0
-  m_Name: Time
+  m_Name: Pressure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2435,7 +2435,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Time
+  m_Text: Pressure
 --- !u!222 &1577271479
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2827,7 +2827,7 @@ GameObject:
   - component: {fileID: 1967207885}
   - component: {fileID: 1967207888}
   m_Layer: 0
-  m_Name: TimeCube
+  m_Name: PressureCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2910,7 +2910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32495dfbc0631db41a986437bfc159e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cup: {fileID: 0}
+  cup: {fileID: 2052127532}
   flow_ps: {fileID: 0}
   defaultMat: {fileID: 2100000, guid: 669c26d996fdcd744bfda1a4369ac246, type: 2}
   selectedMat: {fileID: 2100000, guid: e6ccd1537182b3b4499d876341fce1bb, type: 2}
@@ -3001,6 +3001,53 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 400b45f4f57d2d948b597ecf2c5d43fe, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &2052127532 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 400b45f4f57d2d948b597ecf2c5d43fe, type: 3}
+  m_PrefabInternal: {fileID: 2052127531}
+--- !u!114 &2052127533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2052127532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e842407822cb7e344a48f7fb1e953314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2052127534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2052127532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 64
+    i1: 11
+    i2: 69
+    i3: 244
+    i4: 245
+    i5: 125
+    i6: 45
+    i7: 148
+    i8: 139
+    i9: 89
+    i10: 126
+    i11: 207
+    i12: 44
+    i13: 93
+    i14: 67
+    i15: 254
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1 &2107385840
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,44 +6,44 @@ using UnityEngine.UI;
 public class CupGUIController : MonoBehaviour
 {
 
-   /* [SerializeField]
+   [SerializeField]
     private Text tempText;
     [SerializeField]
     private Text humidityText;
     [SerializeField]
-    private Text timeText;
+    private Text pressureText;
     [SerializeField]
-    private ValveController tempSlider;//was valve_in
+    private SliderController tempSlider;//was valve_in
     [SerializeField]
-    private ValveController humiditySlider;
+    private SliderController humiditySlider;
     [SerializeField]
-    private ValveController timeSlider;
+    private SliderController timeSlider;
 
     private float temp;
     private float humidity;
-    private float time;
+    private float pressure;
 
-    public void setFlowRate(float tempInput, float humidityInput, float timeInput)
+    public void setFlowRate(float tempInput, float humidityInput, float pressureInput)
     {
         temp = tempInput;
         humidity = humidityInput;
-        time = timeInput;
+        pressure = pressureInput;
     }
 
     private void Awake()
     {
         temp = 0f;
         humidity = 0f;
-        time = 0f;
+        pressure = 0f;
     }
 
     private void Update()
     {
-        tempText.text = "Temperature: " + tempSlider.getSliderOutput().ToString("F");
+        /*tempText.text = "Temperature: " + tempSlider.getSliderOutput().ToString("F");
         humidityText.text = "Humidity: " + humiditySlider.getSliderOutput().ToString("F");
-        timeText.text = "Time: " + timeSlider.getSliderOutput().ToString("F");
+        pressureText.text = "Time: " + timeSlider.getSliderOutput().ToString("F");*/
 
-    }*/
+    }
 
 
 }
