@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6102941, g: 0.6102941, b: 0.6102941, a: 1}
+  m_Color: {r: 0.30655277, g: 0.5955882, b: 0.39226672, a: 0.40784314}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -329,15 +329,15 @@ RectTransform:
   m_GameObject: {fileID: 178702188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_Children: []
   m_Father: {fileID: 2107385841}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0.5, y: 0.0000002980232}
+  m_SizeDelta: {x: 100, y: 16.9021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &178702190
 MonoBehaviour:
@@ -371,7 +371,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Temperature
 --- !u!222 &178702191
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -573,6 +573,7 @@ GameObject:
   - component: {fileID: 361079359}
   - component: {fileID: 361079358}
   - component: {fileID: 361079357}
+  - component: {fileID: 361079360}
   m_Layer: 0
   m_Name: HumidityCube
   m_TagString: Untagged
@@ -587,7 +588,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 361079355}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 12.88}
   m_LocalScale: {x: 1.0000575, y: 1.0000211, z: 1.0000097}
   m_Children: []
   m_Father: {fileID: 1695059786}
@@ -607,7 +608,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 48c1edf155dab7443ba91aab4fbce886, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -646,6 +647,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 361079355}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &361079360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 361079355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32495dfbc0631db41a986437bfc159e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cup: {fileID: 0}
+  flow_ps: {fileID: 0}
+  defaultMat: {fileID: 2100000, guid: 48c1edf155dab7443ba91aab4fbce886, type: 2}
+  selectedMat: {fileID: 2100000, guid: e6ccd1537182b3b4499d876341fce1bb, type: 2}
+  sliderOutput: 0
 --- !u!43 &379623792
 Mesh:
   m_ObjectHideFlags: 0
@@ -1360,15 +1377,15 @@ RectTransform:
   m_GameObject: {fileID: 639579086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_Children: []
   m_Father: {fileID: 1323575525}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0.5, y: 0.0000002980232}
+  m_SizeDelta: {x: 100, y: 16.9021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &639579088
 MonoBehaviour:
@@ -1402,7 +1419,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: Humidity
 --- !u!222 &639579089
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2015,7 +2032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6102941, g: 0.6102941, b: 0.6102941, a: 1}
+  m_Color: {r: 0.4307958, g: 0.42333478, b: 0.6397059, a: 0.40784314}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2062,7 +2079,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1329301443}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 17.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1695059786}
@@ -2081,8 +2098,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cup: {fileID: 0}
   flow_ps: {fileID: 0}
-  defaultMat: {fileID: 0}
-  selectedMat: {fileID: 0}
+  defaultMat: {fileID: 2100000, guid: e0c83c2eb67c82a48841b2821b1c31ab, type: 2}
+  selectedMat: {fileID: 2100000, guid: e6ccd1537182b3b4499d876341fce1bb, type: 2}
   sliderOutput: 0
 --- !u!23 &1329301446
 MeshRenderer:
@@ -2098,7 +2115,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e0c83c2eb67c82a48841b2821b1c31ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2362,7 +2379,7 @@ GameObject:
   - component: {fileID: 1577271479}
   - component: {fileID: 1577271478}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2376,15 +2393,15 @@ RectTransform:
   m_GameObject: {fileID: 1577271476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
   m_Children: []
   m_Father: {fileID: 53382245}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0.5, y: 0.0000002980232}
+  m_SizeDelta: {x: 100, y: 16.9021}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1577271478
 MonoBehaviour:
@@ -2581,7 +2598,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9990ef7a752f1de4d96d9ba663e26782, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2808,6 +2825,7 @@ GameObject:
   - component: {fileID: 1967207887}
   - component: {fileID: 1967207886}
   - component: {fileID: 1967207885}
+  - component: {fileID: 1967207888}
   m_Layer: 0
   m_Name: TimeCube
   m_TagString: Untagged
@@ -2822,7 +2840,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1967207883}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 8.02}
   m_LocalScale: {x: 1.0000575, y: 1.0000211, z: 1.0000097}
   m_Children: []
   m_Father: {fileID: 1695059786}
@@ -2842,7 +2860,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 669c26d996fdcd744bfda1a4369ac246, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2881,6 +2899,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1967207883}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1967207888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1967207883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32495dfbc0631db41a986437bfc159e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cup: {fileID: 0}
+  flow_ps: {fileID: 0}
+  defaultMat: {fileID: 2100000, guid: 669c26d996fdcd744bfda1a4369ac246, type: 2}
+  selectedMat: {fileID: 2100000, guid: e6ccd1537182b3b4499d876341fce1bb, type: 2}
+  sliderOutput: 0
 --- !u!1001 &2052127531
 Prefab:
   m_ObjectHideFlags: 0
@@ -3015,7 +3049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6102941, g: 0.6102941, b: 0.6102941, a: 1}
+  m_Color: {r: 0.8455882, g: 0.5160575, b: 0.5160575, a: 0.40784314}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
