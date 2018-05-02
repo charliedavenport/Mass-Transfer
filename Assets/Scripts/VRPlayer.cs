@@ -162,7 +162,13 @@ public class VRPlayer : NetworkBehaviour {
 
         float triggerLeft = getTrigger(LeftController);
         float triggerRight = getTrigger(RightController);
+
         bool a_btn = SteamVR_Controller.Input(indexRight).GetPressDown(Valve.VR.EVRButtonId.k_EButton_A);
+
+        if (a_btn)
+        {
+            vibrateController(RightController);
+        }
       //  interactionZone.a_btn = a_btn;
 
         Vector2 joyLeft = getJoystick(LeftController);
@@ -175,7 +181,7 @@ public class VRPlayer : NetworkBehaviour {
 
     public void vibrateController(SteamVR_TrackedObject controller)
     {
-        if(controller.index >= 0) SteamVR_Controller.Input((int)controller.index).TriggerHapticPulse(5000);
+        if(controller.index >= 0) SteamVR_Controller.Input((int)controller.index).TriggerHapticPulse(8000);
     }
 
     private float getTrigger(SteamVR_TrackedObject controller)
