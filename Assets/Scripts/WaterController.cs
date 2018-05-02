@@ -13,6 +13,8 @@ public class WaterController : MonoBehaviour {
 	private ValveController valveIn;
 	[SerializeField]
 	private ValveController valveOut;
+	[SerializeField]
+	private ParticleSystem[] overflow_ps;
 
 
     private float maxWaterLevel = 2f;
@@ -64,8 +66,9 @@ public class WaterController : MonoBehaviour {
             this.GetComponent<MeshRenderer>().enabled = true;
 
             waterLevel = maxWaterLevel;
-            // overflow
-            overflowing = true;
+            // overflow if full and water is still flowing in
+            overflowing = (valveIn.getFlowRate() > 0f);
+			
         }
         else
         {
@@ -82,6 +85,22 @@ public class WaterController : MonoBehaviour {
                 transform.position.z);
 
         }
+
+		if (overflowing)
+		{
+			for (int i=0; i<4; i++)
+			{
+				if (!overflow_ps[i].isPlaying) overflow_ps[i].Play();
+			}
+		}
+		else
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				if (overflow_ps[i].isPlaying) overflow_ps[i].Stop();
+			}
+		}
+
     }
 
 
