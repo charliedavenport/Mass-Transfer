@@ -19,6 +19,13 @@ public class WaterController : MonoBehaviour {
         waterLevel = f;
     }
 
+    public void incrementWaterLevel(float dy)
+    {
+        waterLevel += dy;
+        if (waterLevel > maxWaterLevel) waterLevel = maxWaterLevel;
+        else if (waterLevel < 0f) waterLevel = 0f;
+    }
+
     public float getVolume()
     {
         return waterLevel * 4f * 3f; // rectangular dimensions of tub

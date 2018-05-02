@@ -36,7 +36,19 @@ public class ValveController : MonoBehaviour {
         //bathTub = GameObject.Find("BathTub");
 	}
 
-	private void OnTriggerEnter(Collider other) {
+    private void Update()
+    {
+        if (flow_rate > 0 && !flow_ps.isPlaying)
+        {
+            flow_ps.Play();
+        }
+        else if (flow_ps.isPlaying)
+        {
+            flow_ps.Stop();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
 		//Debug.Log("OnTriggerEnter");
         if (other.gameObject.tag == "Player") {
 			//change valve material to selected
@@ -73,31 +85,20 @@ public class ValveController : MonoBehaviour {
         {
             total_angle = max_angle;
             transform.rotation = Quaternion.AngleAxis(max_angle, Vector3.up) * start_rot;
-            if (!flow_ps.isPlaying)
-            {
-                flow_ps.Play();
-            }
         }
         else if (total_angle > 0)
         {
             total_angle = 0;
             transform.rotation = start_rot;
-            if (flow_ps.isPlaying)
-            {
-                flow_ps.Stop();
-            }
+
         }
         else
         {
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.up) * transform.rotation;
-            if (!flow_ps.isPlaying)
-            {
-                flow_ps.Play();
-            }
         }
 
         //update flow rate
-        flow_rate = -total_angle; // ranges from 0 to 90 right now
+        flow_rate = -total_angle / 90f;
 
 	}
 

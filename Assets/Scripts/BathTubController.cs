@@ -7,7 +7,11 @@ public class BathTubController : NetworkBehaviour {
 
 
     [SerializeField]
-    ValveController valeController;
+    ValveController valveIn;
+    [SerializeField]
+    ValveController valveOut;
+    [SerializeField]
+    WaterController water;
     [SerializeField]
     private ValveGUIController valveGUI;
     [SerializeField]
@@ -16,6 +20,9 @@ public class BathTubController : NetworkBehaviour {
     private float flowOutRate;
     [SerializeField]
     private float valveAngle;
+
+    private const float width = 3f;
+    private const float length = 4f;
 
     [SyncVar]
     float flowRate_sync;
@@ -31,13 +38,20 @@ public class BathTubController : NetworkBehaviour {
 
     private void FixedUpdate() {
         if (isLocalPlayer) {
-            valveGUI.setFlowRate(flowInRate, flowOutRate);
+            flowInRate = valveIn.getFlowRate();
+            flowOutRate = valveOut.getFlowRate();
+
+            float dV = flowInRate - flowOutRate; // difference in volume
+            float dy = dV / (width * length); // difference in height;
+            water.incrementWaterLevel(dy);
+
+            //valveGUI.setFlowRate(flowInRate, flowOutRate);
             CmdSyncBathTub(flowInRate);
         }
         else { // not local player
             flowInRate = flowRate_sync;
             // not sure about this line... need to check if this is necessary
-            valveGUI.setFlowRate(flowInRate, 0f);
+            //valveGUI.setFlowRate(flowInRate, flowOutRate);
         }
     }
 
