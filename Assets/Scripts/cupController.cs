@@ -6,8 +6,22 @@ public class cupController : MonoBehaviour {
 
     GameObject tea;
     GameObject tempButton;
-    Vector3 teaPos;
-    float teaPosY;
+    float teaPos;
+
+    //Equation variables
+   // float teaPosY;
+
+    float temp; // T (in Kelvins) 
+    float r; //R ???
+    float p; //mmHg ???
+    float time; // t
+    float concentrarion; // C_A(liq)
+    float initialHeight; // L0
+    float newHeight; // L1
+    float diffusionCoef// D_AB
+    float moleFrac; // Y_AO
+    float relativeHumidity; //Y_AL
+
 
     private void Awake()
     {
@@ -19,7 +33,7 @@ public class cupController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        teaPos = tea.transform.position;
+        teaPos = tea.transform.position.y;
 
 
     }
@@ -34,7 +48,7 @@ public class cupController : MonoBehaviour {
     {
         if (col.gameObject.name == "tempButton")
         {
-            teaPosY = tea.transform.position.y - 1; ;
+            teaPos = tea.transform.position.y - 1; ;
         }
     }
 }
