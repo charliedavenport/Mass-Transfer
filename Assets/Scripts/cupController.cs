@@ -6,21 +6,21 @@ public class cupController : MonoBehaviour {
 
     GameObject tea;
     GameObject tempButton;
-    float teaPos;
+    double teaPos;
 
     //Equation variables
-   // float teaPosY;
+   // double teaPosY;
 
-    float temp; // T (in Kelvins) 
-    float r; //R ???
-    float p; //mmHg ???
-    float time; // t
-    float concentrarion; // C_A(liq)
-    float initialHeight; // L0
-    float newHeight; // L1
-    float diffusionCoef;// D_AB
-    float moleFrac; // Y_AO
-    float relativeHumidity; //Y_AL
+    float temp; // T (in Kelvins) //
+    double r; //R ???
+    double p; //mmHg ???
+    double time; // t
+    double concentrarion; // C_A(liq)
+    double initialHeight; // L0
+    double newHeight; // L1
+    double diffusionCoef;// D_AB //
+    double moleFrac; // Y_AO
+    double relativeHumidity; //Y_AL
 
 
     private void Awake()
@@ -34,6 +34,8 @@ public class cupController : MonoBehaviour {
     void Start()
     {
         teaPos = tea.transform.position.y;
+        diffusionCoef = 0.0016; //unit: mm2/s
+        temp = 273; //unit: Kelvins 
 
 
     }
@@ -42,6 +44,7 @@ public class cupController : MonoBehaviour {
     void Update()
     {
         Debug.Log(tea.transform.position.y);
+        Mathf.Clamp(temp, 273, 310); //unit: Kelvins (~32 -100 F)
     }
 
     void onCollsionEnter(Collision col)
