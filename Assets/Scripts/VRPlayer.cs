@@ -164,11 +164,11 @@ public class VRPlayer : NetworkBehaviour {
         float triggerRight = getTrigger(RightController);
 
         bool a_btn = SteamVR_Controller.Input(indexRight).GetPressDown(Valve.VR.EVRButtonId.k_EButton_A);
-
+/*
         if (a_btn)
         {
             vibrateController(RightController);
-        }
+        }*/
       //  interactionZone.a_btn = a_btn;
 
         Vector2 joyLeft = getJoystick(LeftController);

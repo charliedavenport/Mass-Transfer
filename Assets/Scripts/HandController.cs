@@ -44,7 +44,7 @@ public class HandController : MonoBehaviour {
 			if (a_btn_down && !grabbingValve)
 			{
                 //currentValve.rotateValve(0f);
-                
+                player.vibrateController(player.RightController);
                 StartCoroutine(doGrabValve());
 			}
 		}
@@ -55,7 +55,7 @@ public class HandController : MonoBehaviour {
             if (a_btn_down && !grabbingSlider)
             {
                 //currentValve.rotateValve(0f);
-
+                player.vibrateController(player.RightController);
                 StartCoroutine(doGrabSlider());
             }
         }

@@ -12,8 +12,8 @@ public class cupControllerMel : MonoBehaviour {
    // double teaPosY;
 
     float temp; // T (in Kelvins) //
-    double r; //R ???
-    double p; //mmHg ???
+    double r; //R 
+    double p; //mmHg 
     double time; // t
     double concentrarion; // C_A(liq)
     double initialHeight; // L0
@@ -44,7 +44,7 @@ public class cupControllerMel : MonoBehaviour {
     void Update()
     {
         Debug.Log(tea.transform.position.y);
-        Mathf.Clamp(temp, 273, 310); //unit: Kelvins (~32 -100 F)
+        Mathf.Clamp(temp, 273, 373); //unit: Kelvins (~32 -100 F)
     }
 
     void onCollsionEnter(Collision col)
