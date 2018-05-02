@@ -10,11 +10,13 @@ public class HandController : MonoBehaviour {
 	public Vector3 controllerAngularVelocity;
     [SerializeField]
 	private ValveController currentValve;
-    private SliderController currentSlider;
+   // private SliderController currentSlider;
 
     private int controllerIndex;
 
     public bool grabbing;
+    //public bool valveSelected = false;
+    //ublic bool sliderSelected = false;
 
     public void setControllerIndex(int ind) {
         controllerIndex = ind;
@@ -22,7 +24,7 @@ public class HandController : MonoBehaviour {
 
 	private void Awake() {
 		currentValve = null;
-        currentSlider = null;
+        //currentSlider = null;
 	}
 
 	private void Start() {
@@ -38,8 +40,14 @@ public class HandController : MonoBehaviour {
 			if (a_btn_down && !grabbing)
 			{
                 //currentValve.rotateValve(0f);
-
-                StartCoroutine(doGrabValve());
+               // if (valveSelected)
+                //{
+                    StartCoroutine(doGrabValve());
+                /*}
+                else if (sliderSelected)
+                {
+                    StartCoroutine(doGrabSlider());
+                }*/
 			}
 		}
 
@@ -47,12 +55,16 @@ public class HandController : MonoBehaviour {
     }
 
     public void selectValve(ValveController valve) {
+        //valveSelected = true;
+        //sliderSelected = false;
 		currentValve = valve;
     }
 
-    public void selectSlider(SliderController slider){
+    /*public void selectSlider(SliderController slider){
+        //sliderSelected = true;
+        //valveSelected = false;
         currentSlider = slider;
-    }
+    }*/
 
 	public void releaseValve() {
         if (currentValve != null)
@@ -62,13 +74,13 @@ public class HandController : MonoBehaviour {
 		currentValve = null;
 	}
 
-    public void releaseSlider(){
+    /*public void releaseSlider(){
         if (currentSlider != null)
         {
             currentSlider.deselect();
         }
         currentSlider = null;
-    }
+    }*/
 
     IEnumerator doGrabValve() {
 
@@ -94,7 +106,7 @@ public class HandController : MonoBehaviour {
         grabbing = false;
     }
 
-    IEnumerator doGrabSlider()
+    /*IEnumerator doGrabSlider()
     {
 
         float prev_offset = 0f;
@@ -119,6 +131,6 @@ public class HandController : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
         grabbing = false;
-    }
+    }*/
 
 }

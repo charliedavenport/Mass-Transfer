@@ -1000,6 +1000,10 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 146900, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
   m_PrefabInternal: {fileID: 1913114355}
+--- !u!4 &589060894 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
+  m_PrefabInternal: {fileID: 1913114355}
 --- !u!1 &668155198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,10 +1213,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1323201328011062, guid: 43b32576fe3b7d64da082ce6e665567b, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 114542528916868856, guid: 43b32576fe3b7d64da082ce6e665567b,
+        type: 2}
+      propertyPath: SteamVR_Rig
+      value: 
+      objectReference: {fileID: 589060894}
+    - target: {fileID: 114542528916868856, guid: 43b32576fe3b7d64da082ce6e665567b,
+        type: 2}
+      propertyPath: hmd
+      value: 
+      objectReference: {fileID: 253444548}
+    - target: {fileID: 114542528916868856, guid: 43b32576fe3b7d64da082ce6e665567b,
+        type: 2}
+      propertyPath: LeftController
+      value: 
+      objectReference: {fileID: 1134572161}
+    - target: {fileID: 114542528916868856, guid: 43b32576fe3b7d64da082ce6e665567b,
+        type: 2}
+      propertyPath: RightController
+      value: 
+      objectReference: {fileID: 136256115}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43b32576fe3b7d64da082ce6e665567b, type: 2}
   m_IsPrefabParent: 0

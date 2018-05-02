@@ -18,7 +18,7 @@ public class cupController : MonoBehaviour {
     float concentrarion; // C_A(liq)
     float initialHeight; // L0
     float newHeight; // L1
-    float diffusionCoef// D_AB
+    float diffusionCoef;// D_AB
     float moleFrac; // Y_AO
     float relativeHumidity; //Y_AL
 
@@ -48,7 +48,7 @@ public class cupController : MonoBehaviour {
     {
         if (col.gameObject.name == "tempButton")
         {
-            teaPos = tea.transform.position.y - 1; ;
+            teaPos = tea.transform.position.y - 1; 
         }
     }
 }

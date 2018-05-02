@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SliderController : MonoBehaviour
-{
+{/*
 
     [SerializeField]
     private GameObject cup;
-    [SerializeField]
-    private ParticleSystem flow_ps;
+    //[SerializeField]
+    //private ParticleSystem flow_ps;
 
     [SerializeField]
     private Material defaultMat;
@@ -81,34 +81,34 @@ public class SliderController : MonoBehaviour
         {
             total_angle = max_angle;
             transform.rotation = Quaternion.AngleAxis(max_angle, Vector3.up) * start_rot;
-            if (!flow_ps.isPlaying)
+            /*if (!flow_ps.isPlaying)
             {
                 flow_ps.Play();
-            }
-        }
+            }*/
+      /*  }
         else if (total_angle > 0)
         {
             total_angle = 0;
             transform.rotation = start_rot;
-            if (flow_ps.isPlaying)
+            /*if (flow_ps.isPlaying)
             {
                 flow_ps.Stop();
-            }
-        }
+            }*/
+ /*       }
         else
         {
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.up) * transform.rotation;
-            if (!flow_ps.isPlaying)
+            /*if (!flow_ps.isPlaying)
             {
                 flow_ps.Play();
-            }
-        }
+            }*/
+       // }
 
         //update flow rate
-        sliderOutput = -total_angle; // ranges from 0 to 90 right now
+ /*       sliderOutput = -total_angle; // ranges from 0 to 90 right now
 
     }
 
-    public float getSliderOutput() { return sliderOutput; }
+    public float getSliderOutput() { return sliderOutput; }*/
 
 }
