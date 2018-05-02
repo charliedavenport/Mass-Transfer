@@ -26,6 +26,11 @@ public class WaterController : MonoBehaviour {
         waterLevel = f;
     }
 
+	public float getWaterLevel()
+	{
+		return waterLevel;
+	}
+
     public void incrementWaterLevel(float dy)
     {
         waterLevel += dy;
