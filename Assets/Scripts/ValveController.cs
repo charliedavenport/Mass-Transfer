@@ -61,7 +61,7 @@ public class ValveController : MonoBehaviour {
 	private void OnTriggerExit(Collider other) {
 		if (other.gameObject.tag == "Player") {
 
-            if (!other.GetComponent<HandController>().grabbing)
+            if (!other.GetComponent<HandController>().grabbingValve)
             { // not grabbing
                 deselect();
                 other.GetComponent<HandController>().releaseValve();

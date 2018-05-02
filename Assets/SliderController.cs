@@ -56,7 +56,7 @@ public class SliderController : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
 
-            if (!other.GetComponent<HandController>().grabbing)
+            if (!other.GetComponent<HandController>().grabbingSlider)
             { // not grabbing
                 deselect();
                 other.GetComponent<HandController>().releaseSlider();

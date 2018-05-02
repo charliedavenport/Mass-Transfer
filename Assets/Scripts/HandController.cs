@@ -10,11 +10,13 @@ public class HandController : MonoBehaviour {
 	public Vector3 controllerAngularVelocity;
     [SerializeField]
 	private ValveController currentValve;
+    [SerializeField]
     private SliderController currentSlider;
 
     private int controllerIndex;
 
-    public bool grabbing;
+    public bool grabbingValve;
+    public bool grabbingSlider;
 
     public void setControllerIndex(int ind) {
         controllerIndex = ind;
@@ -26,7 +28,8 @@ public class HandController : MonoBehaviour {
 	}
 
 	private void Start() {
-        grabbing = false;
+        grabbingValve = false;
+        grabbingSlider = false;
 		// get rot on first frame
 		//stored_rot = this.transform.rotation;
 	}
@@ -35,7 +38,7 @@ public class HandController : MonoBehaviour {
 
         if (currentValve != null) {
 			bool a_btn_down = SteamVR_Controller.Input(controllerIndex).GetPressDown(Valve.VR.EVRButtonId.k_EButton_A);
-			if (a_btn_down && !grabbing)
+			if (a_btn_down && !grabbingValve)
 			{
                 //currentValve.rotateValve(0f);
 
@@ -74,7 +77,7 @@ public class HandController : MonoBehaviour {
 
         float prev_offset = 0f;
 
-        grabbing = true;
+        grabbingValve = true;
         while (true) {
             bool a_btn_up = SteamVR_Controller.Input(controllerIndex).GetPressUp(Valve.VR.EVRButtonId.k_EButton_A);
             if (a_btn_up) {
@@ -91,7 +94,7 @@ public class HandController : MonoBehaviour {
 
             yield return new WaitForFixedUpdate();
         }
-        grabbing = false;
+        grabbingValve = false;
     }
 
     IEnumerator doGrabSlider()
@@ -99,7 +102,7 @@ public class HandController : MonoBehaviour {
 
         float prev_offset = 0f;
 
-        grabbing = true;
+        grabbingSlider = true;
         while (true)
         {
             bool a_btn_up = SteamVR_Controller.Input(controllerIndex).GetPressUp(Valve.VR.EVRButtonId.k_EButton_A);
@@ -118,7 +121,7 @@ public class HandController : MonoBehaviour {
 
             yield return new WaitForFixedUpdate();
         }
-        grabbing = false;
+        grabbingSlider = false;
     }
 
 }
