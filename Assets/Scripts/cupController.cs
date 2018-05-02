@@ -48,7 +48,7 @@ public class cupController : MonoBehaviour {
     {
         if (col.gameObject.name == "tempButton")
         {
-            teaPos = tea.transform.position.y - 1; 
+            teaPos = tea.transform.position.y - 1; ;
         }
     }
 }

@@ -79,7 +79,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1585405482159956
 GameObject:
   m_ObjectHideFlags: 1
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becde14d083c5d245b5448075cc2dad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114542528916868856}
+  player: {fileID: 0}
   controllerVelocity: {x: 0, y: 0, z: 0}
   controllerAngularVelocity: {x: 0, y: 0, z: 0}
   currentValve: {fileID: 0}
