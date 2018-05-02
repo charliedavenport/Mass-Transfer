@@ -12,9 +12,13 @@ public class HandController : MonoBehaviour {
 	private ValveController currentValve;
     [SerializeField]
     private SliderController currentSlider;
+    /*
+    [SerializeField]
+    OVRInput.Controller controllerMask; // haptics
+    public OVRHapticsClip vibrating;*/
 
     private int controllerIndex;
-
+    
     public bool grabbingValve;
     public bool grabbingSlider;
 
@@ -30,18 +34,28 @@ public class HandController : MonoBehaviour {
 	private void Start() {
         grabbingValve = false;
         grabbingSlider = false;
-		// get rot on first frame
-		//stored_rot = this.transform.rotation;
-	}
 
-	private void Update() {
+        /* int cnt = 10;
+         vibrating = new OVRHapticsClip(cnt);
+
+         for (int i = 0; i < cnt; i++)
+         {
+             vibrating.Samples[i] = i % 2 == 0 ? (byte)0 : (byte)150; // haptics
+         }
+         vibrating = new OVRHapticsClip(vibrating.Samples, vibrating.Samples.Length);
+         */
+        // get rot on first frame
+        //stored_rot = this.transform.rotation;
+    }
+
+    private void Update() {
 
         if (currentValve != null) {
 			bool a_btn_down = SteamVR_Controller.Input(controllerIndex).GetPressDown(Valve.VR.EVRButtonId.k_EButton_A);
 			if (a_btn_down && !grabbingValve)
 			{
                 //currentValve.rotateValve(0f);
-
+                //Vibrate(vibrating); haptics
                 StartCoroutine(doGrabValve());
 			}
 		}
@@ -133,5 +147,19 @@ public class HandController : MonoBehaviour {
         }
         grabbingSlider = false;
     }
+
+    /*
+    public void Vibrate(OVRHapticsClip vibraitng)
+    {
+        var chan = OVRHaptics.RightChannel;
+        if (controllerMask == OVRInput.Controller.LTouch)
+        {
+            chan = OVRHaptics.LeftChannel;
+
+        }
+
+        chan.Preempt(vibrating);
+
+    }*/ // haptics
 
 }
