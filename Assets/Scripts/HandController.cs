@@ -12,10 +12,7 @@ public class HandController : MonoBehaviour {
 	private ValveController currentValve;
     [SerializeField]
     private SliderController currentSlider;
-    /*
-    [SerializeField]
-    OVRInput.Controller controllerMask; // haptics
-    public OVRHapticsClip vibrating;*/
+
 
     private int controllerIndex;
     
@@ -35,15 +32,7 @@ public class HandController : MonoBehaviour {
         grabbingValve = false;
         grabbingSlider = false;
 
-        /* int cnt = 10;
-         vibrating = new OVRHapticsClip(cnt);
-
-         for (int i = 0; i < cnt; i++)
-         {
-             vibrating.Samples[i] = i % 2 == 0 ? (byte)0 : (byte)150; // haptics
-         }
-         vibrating = new OVRHapticsClip(vibrating.Samples, vibrating.Samples.Length);
-         */
+        
         // get rot on first frame
         //stored_rot = this.transform.rotation;
     }
@@ -55,7 +44,7 @@ public class HandController : MonoBehaviour {
 			if (a_btn_down && !grabbingValve)
 			{
                 //currentValve.rotateValve(0f);
-                //Vibrate(vibrating); haptics
+                
                 StartCoroutine(doGrabValve());
 			}
 		}
@@ -148,18 +137,5 @@ public class HandController : MonoBehaviour {
         grabbingSlider = false;
     }
 
-    /*
-    public void Vibrate(OVRHapticsClip vibraitng)
-    {
-        var chan = OVRHaptics.RightChannel;
-        if (controllerMask == OVRInput.Controller.LTouch)
-        {
-            chan = OVRHaptics.LeftChannel;
-
-        }
-
-        chan.Preempt(vibrating);
-
-    }*/ // haptics
-
+    
 }

@@ -173,6 +173,11 @@ public class VRPlayer : NetworkBehaviour {
 
     }
 
+    public void vibrateController(SteamVR_TrackedObject controller)
+    {
+        if(controller.index >= 0) SteamVR_Controller.Input((int)controller.index).TriggerHapticPulse(5000);
+    }
+
     private float getTrigger(SteamVR_TrackedObject controller)
     {
         return controller.index >= 0 ? SteamVR_Controller.Input((int)controller.index).GetAxis(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger).magnitude : 0.0f;
