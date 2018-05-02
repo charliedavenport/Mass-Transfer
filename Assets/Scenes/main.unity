@@ -546,36 +546,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 4483686578801598, guid: cedbe0c658f7c4647b8b6828fc1207b5, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4944864382177962, guid: cedbe0c658f7c4647b8b6828fc1207b5, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4695715105236076, guid: cedbe0c658f7c4647b8b6828fc1207b5, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114346961898430056, guid: cedbe0c658f7c4647b8b6828fc1207b5,
-        type: 2}
-      propertyPath: flow_ps
-      value: 
-      objectReference: {fileID: 847144704}
-    - target: {fileID: 114375749982656362, guid: cedbe0c658f7c4647b8b6828fc1207b5,
-        type: 2}
-      propertyPath: bathTub
-      value: 
-      objectReference: {fileID: 397931904}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cedbe0c658f7c4647b8b6828fc1207b5, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &397931904 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1125620528630480, guid: cedbe0c658f7c4647b8b6828fc1207b5,
-    type: 2}
-  m_PrefabInternal: {fileID: 397931903}
 --- !u!1 &405295494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,11 +1170,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 759458166}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!198 &847144704 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198538740586746146, guid: cedbe0c658f7c4647b8b6828fc1207b5,
-    type: 2}
-  m_PrefabInternal: {fileID: 397931903}
 --- !u!1001 &913376421
 Prefab:
   m_ObjectHideFlags: 0

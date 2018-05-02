@@ -73,15 +73,27 @@ public class ValveController : MonoBehaviour {
         {
             total_angle = max_angle;
             transform.rotation = Quaternion.AngleAxis(max_angle, Vector3.up) * start_rot;
+            if (!flow_ps.isPlaying)
+            {
+                flow_ps.Play();
+            }
         }
         else if (total_angle > 0)
         {
             total_angle = 0;
             transform.rotation = start_rot;
+            if (flow_ps.isPlaying)
+            {
+                flow_ps.Stop();
+            }
         }
         else
         {
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.up) * transform.rotation;
+            if (!flow_ps.isPlaying)
+            {
+                flow_ps.Play();
+            }
         }
 
         //update flow rate
