@@ -1,57 +1,97 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class cupController : MonoBehaviour {
+public class CupController : NetworkBehaviour
+{
 
-    GameObject tea;
-    GameObject tempButton;
-    double teaPos;
 
-    //Equation variables
-   // double teaPosY;
+    [SerializeField]
+    SliderController tempSlider;//valveIn
+    [SerializeField]
+    SliderController humiditySlider;//valveOut
+    [SerializeField]
+    SliderController pressureSlider;//new
+    //[SerializeField]
+    //WaterController water;
+    [SerializeField]
+    private CupGUIController cupGUI; //valveGUI
+    [SerializeField]
+    private float tempValue;
+    [SerializeField]
+    private float humidityValue;
+    [SerializeField]
+    private float pressureValue;
+    [SerializeField]
+    private float valveAngle;
 
-    float temp; // T (in Kelvins) //
-    double r; //R ???
-    double p; //mmHg ???
-    double time; // t
-    double concentrarion; // C_A(liq)
-    double initialHeight; // L0
-    double newHeight; // L1
-    double diffusionCoef;// D_AB //
-    double moleFrac; // Y_AO
-    double relativeHumidity; //Y_AL
+    private const float width = 3f;
+    private const float length = 4f;
 
+    //[SyncVar]
+    //float flowRate_sync;
+
+    private GameManager gm;
 
     private void Awake()
     {
-        tea = GameObject.Find("tea");
-        tempButton = GameObject.Find("tempButton");
-
+        tempValue = 0f;
+        humidityValue = 0f;
+        pressureValue = 0f;
+        valveAngle = 0f;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    // Use this for initialization
-    void Start()
+    private void FixedUpdate()
     {
-        teaPos = tea.transform.position.y;
-        diffusionCoef = 0.0016; //unit: mm2/s
-        temp = 273; //unit: Kelvins 
 
+        tempValue = tempSlider.getSliderOutput();
+        humidityValue = humiditySlider.getSliderOutput();
+        pressureValue = pressureSlider.getSliderOutput();
 
-    }
+        /*float dV = flowInRate - flowOutRate; // difference in volume
+        float dy = dV / (width * length); // difference in height;
+        Debug.Log(dy);
+        water.incrementWaterLevel(dy);*/
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(tea.transform.position.y);
-        Mathf.Clamp(temp, 273, 310); //unit: Kelvins (~32 -100 F)
-    }
-
-    void onCollsionEnter(Collision col)
-    {
-        if (col.gameObject.name == "tempButton")
+        if (isLocalPlayer)
         {
-            teaPos = tea.transform.position.y - 1; ;
+            /*
+            flowInRate = valveIn.getFlowRate();
+            flowOutRate = valveOut.getFlowRate();
+
+            float dV = flowInRate - flowOutRate; // difference in volume
+            float dy = dV / (width * length); // difference in height;
+            Debug.Log(dy);
+            water.incrementWaterLevel(dy);*/
+
+            //valveGUI.setFlowRate(flowInRate, flowOutRate);
+            //(flowInRate);
+        }
+        else
+        { // not local player
+            //flowInRate = flowRate_sync;
+            // not sure about this line... need to check if this is necessary
+            //valveGUI.setFlowRate(flowInRate, flowOutRate);
         }
     }
+/*
+    public void setFlowInRate(float f)
+    {
+        flowInRate = f;
+    }
+    public void setFlowOutrate(float f)
+    {
+        flowOutRate = f;
+    }
+
+    [Command]
+    void CmdSyncBathTub(float fRate)
+    {
+        flowInRate = fRate;
+        //set syncvars
+        flowRate_sync = fRate;
+    }*/
+
 }

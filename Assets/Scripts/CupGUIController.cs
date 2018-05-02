@@ -17,7 +17,7 @@ public class CupGUIController : MonoBehaviour
     [SerializeField]
     private SliderController humiditySlider;
     [SerializeField]
-    private SliderController timeSlider;
+    private SliderController pressureSlider;
 
     private float temp;
     private float humidity;
@@ -39,9 +39,9 @@ public class CupGUIController : MonoBehaviour
 
     private void Update()
     {
-        /*tempText.text = "Temperature: " + tempSlider.getSliderOutput().ToString("F");
+        tempText.text = "Temperature: " + tempSlider.getSliderOutput().ToString("F");
         humidityText.text = "Humidity: " + humiditySlider.getSliderOutput().ToString("F");
-        pressureText.text = "Time: " + timeSlider.getSliderOutput().ToString("F");*/
+        pressureText.text = "Pressure: " + pressureSlider.getSliderOutput().ToString("F");
 
     }
 
