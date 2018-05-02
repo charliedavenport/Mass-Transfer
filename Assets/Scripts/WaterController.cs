@@ -33,7 +33,7 @@ public class WaterController : MonoBehaviour {
 
     private void Awake()
     {
-        waterLevel = 0f;
+        waterLevel = 0.1f;
         max_y_pos = transform.position.y;
         min_y_pos = 0.2f;
         max_y_scale = transform.localScale.y;
@@ -48,7 +48,7 @@ public class WaterController : MonoBehaviour {
 
     private void Update()
     {
-        if (waterLevel <= 0f) // do not draw water at all if level is 0
+        if (waterLevel < 0f) // do not draw water at all if level is 0
         {
             waterLevel = 0f;
             this.GetComponent<MeshRenderer>().enabled = false;

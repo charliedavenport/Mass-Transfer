@@ -42,7 +42,7 @@ public class ValveController : MonoBehaviour {
         {
             flow_ps.Play();
         }
-        else if (flow_ps.isPlaying)
+        else if (flow_rate == 0 && flow_ps.isPlaying)
         {
             flow_ps.Stop();
         }

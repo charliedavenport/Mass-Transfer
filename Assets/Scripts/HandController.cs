@@ -10,6 +10,7 @@ public class HandController : MonoBehaviour {
 	public Vector3 controllerAngularVelocity;
     [SerializeField]
 	private ValveController currentValve;
+    private SliderController currentSlider;
 
     private int controllerIndex;
 
@@ -21,6 +22,7 @@ public class HandController : MonoBehaviour {
 
 	private void Awake() {
 		currentValve = null;
+        currentSlider = null;
 	}
 
 	private void Start() {
@@ -46,7 +48,10 @@ public class HandController : MonoBehaviour {
 
     public void selectValve(ValveController valve) {
 		currentValve = valve;
+    }
 
+    public void selectSlider(SliderController slider){
+        currentSlider = slider;
     }
 
 	public void releaseValve() {
@@ -56,6 +61,14 @@ public class HandController : MonoBehaviour {
         }
 		currentValve = null;
 	}
+
+    public void releaseSlider(){
+        if (currentSlider != null)
+        {
+            currentSlider.deselect();
+        }
+        currentSlider = null;
+    }
 
     IEnumerator doGrabValve() {
 
@@ -81,5 +94,31 @@ public class HandController : MonoBehaviour {
         grabbing = false;
     }
 
+    IEnumerator doGrabSlider()
+    {
+
+        float prev_offset = 0f;
+
+        grabbing = true;
+        while (true)
+        {
+            bool a_btn_up = SteamVR_Controller.Input(controllerIndex).GetPressUp(Valve.VR.EVRButtonId.k_EButton_A);
+            if (a_btn_up)
+            {
+                //Debug.Log("a_btn_up");
+                releaseSlider();
+                break;
+            }
+
+            float offset = Vector3.Dot((transform.position - currentValve.transform.position), Vector3.right);
+            float temp = offset;
+            offset -= prev_offset;
+            prev_offset = temp;
+            currentSlider.rotateSlider(-offset * Mathf.Rad2Deg * 10f);
+
+            yield return new WaitForFixedUpdate();
+        }
+        grabbing = false;
+    }
 
 }

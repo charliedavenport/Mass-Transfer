@@ -468,7 +468,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1033625794051468}
-  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.70710695}
+  m_LocalRotation: {x: 0.7071067, y: -0, z: -0, w: 0.7071069}
   m_LocalPosition: {x: 0.78, y: 0.546, z: -1.95}
   m_LocalScale: {x: -300.00046, y: -300.00058, z: -427.87552}
   m_Children: []
@@ -897,7 +897,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5fa2fab3568b04ab4a0e5f86951eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valeController: {fileID: 0}
+  valveIn: {fileID: 114346961898430056}
+  valveOut: {fileID: 114375749982656362}
+  water: {fileID: 114214680226119420}
   valveGUI: {fileID: 114779272913387028}
   flowInRate: 0
   flowOutRate: 0
@@ -1182,7 +1184,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 1537768361
+  randomSeed: -1937890790
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4543,7 +4545,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -1671166448
+  randomSeed: -143295447
   InitialModule:
     serializedVersion: 3
     enabled: 1

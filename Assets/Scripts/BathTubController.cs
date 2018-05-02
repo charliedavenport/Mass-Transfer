@@ -37,13 +37,24 @@ public class BathTubController : NetworkBehaviour {
     }
 
     private void FixedUpdate() {
+
+        flowInRate = valveIn.getFlowRate();
+        flowOutRate = valveOut.getFlowRate();
+
+        float dV = flowInRate - flowOutRate; // difference in volume
+        float dy = dV / (width * length); // difference in height;
+        Debug.Log(dy);
+        water.incrementWaterLevel(dy);
+
         if (isLocalPlayer) {
+            /*
             flowInRate = valveIn.getFlowRate();
             flowOutRate = valveOut.getFlowRate();
 
             float dV = flowInRate - flowOutRate; // difference in volume
             float dy = dV / (width * length); // difference in height;
-            water.incrementWaterLevel(dy);
+            Debug.Log(dy);
+            water.incrementWaterLevel(dy);*/
 
             //valveGUI.setFlowRate(flowInRate, flowOutRate);
             CmdSyncBathTub(flowInRate);
