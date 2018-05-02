@@ -7,6 +7,8 @@ public class WaterController : MonoBehaviour {
 
     [SerializeField]
     private float waterLevel;
+    [SerializeField]
+    private bool overflowing;
 
     private float maxWaterLevel = 2f;
     private float max_y_scale, max_y_pos, min_y_pos; // adjust these every frame depending on water level
@@ -29,6 +31,8 @@ public class WaterController : MonoBehaviour {
         min_y_pos = 0.2f;
         max_y_scale = transform.localScale.y;
 
+        overflowing = false;
+
         scale_factor = max_y_scale / maxWaterLevel;
         pos_factor = (max_y_pos - min_y_pos) / maxWaterLevel;
         Debug.Log("pos_factor: " + pos_factor);
@@ -39,11 +43,23 @@ public class WaterController : MonoBehaviour {
     {
         if (waterLevel <= 0f) // do not draw water at all if level is 0
         {
+            waterLevel = 0f;
             this.GetComponent<MeshRenderer>().enabled = false;
+            overflowing = false; 
+        }
+        else if (waterLevel >= maxWaterLevel)
+        {
+            this.GetComponent<MeshRenderer>().enabled = true;
+
+            waterLevel = maxWaterLevel;
+            // overflow
+            overflowing = true;
         }
         else
         {
             this.GetComponent<MeshRenderer>().enabled = true;
+
+            overflowing = false;
 
             // set y position and scale to change water level "in place"
             transform.localScale = new Vector3(transform.localScale.x,

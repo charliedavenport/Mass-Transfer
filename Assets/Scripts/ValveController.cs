@@ -6,6 +6,8 @@ public class ValveController : MonoBehaviour {
 
     [SerializeField]
     private GameObject bathTub;
+    [SerializeField]
+    private ParticleSystem flow_ps;
 
 	[SerializeField]
 	private Material defaultMat;
@@ -31,7 +33,7 @@ public class ValveController : MonoBehaviour {
 
         start_rot = transform.rotation;
 
-        bathTub = GameObject.Find("BathTub");
+        //bathTub = GameObject.Find("BathTub");
 	}
 
 	private void OnTriggerEnter(Collider other) {
