@@ -9,6 +9,11 @@ public class WaterController : MonoBehaviour {
     private float waterLevel;
     [SerializeField]
     private bool overflowing;
+	[SerializeField]
+	private ValveController valveIn;
+	[SerializeField]
+	private ValveController valveOut;
+
 
     private float maxWaterLevel = 2f;
     private float max_y_scale, max_y_pos, min_y_pos; // adjust these every frame depending on water level

@@ -67,6 +67,7 @@ public class HandController : MonoBehaviour {
     }
 
     public void selectSlider(SliderController slider){
+		Debug.Log("selecting slider");
         currentSlider = slider;
     }
 
@@ -113,20 +114,24 @@ public class HandController : MonoBehaviour {
     IEnumerator doGrabSlider()
     {
 
+		Debug.Log("in doGrabSlider");
+
         float prev_offset = 0f;
 
         grabbingSlider = true;
         while (true)
         {
+
+			Debug.Log("while loop");
             bool a_btn_up = SteamVR_Controller.Input(controllerIndex).GetPressUp(Valve.VR.EVRButtonId.k_EButton_A);
             if (a_btn_up)
             {
-                //Debug.Log("a_btn_up");
+                Debug.Log("a_btn_up");
                 releaseSlider();
                 break;
             }
 
-            float offset = Vector3.Dot((transform.position - currentValve.transform.position), Vector3.right);
+            float offset = Vector3.Dot((transform.position - currentSlider.transform.position), Vector3.right);
             float temp = offset;
             offset -= prev_offset;
             prev_offset = temp;
