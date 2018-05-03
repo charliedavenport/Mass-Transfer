@@ -1,0 +1,1 @@
+\frac{C_{a(liq)}(L_1^2 - L_0^2)}{2} = \frac{-PD_{AB}\ln{\big(\frac{1-y_{A0}}{1-y_{AL}}\big)t}}{RT}
