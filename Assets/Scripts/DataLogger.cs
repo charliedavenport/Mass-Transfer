@@ -63,7 +63,7 @@ public class DataLogger : MonoBehaviour {
 
 
 	/**
-	 * Logs water level every second
+	 * Logs water level every 0.25 sec
 	 */
 	IEnumerator doLogWaterLevel()
 	{
@@ -91,7 +91,7 @@ public class DataLogger : MonoBehaviour {
 	}
 
 	/**
-	 * Logs water level every second
+	 * Logs FlowIn, FlowOut, dV, every 0.25 sec
 	 */
 	IEnumerator doLogFlowRates()
 	{
