@@ -15,7 +15,9 @@ public class SliderController : MonoBehaviour
     [SerializeField]
     private Material selectedMat;
     private Quaternion start_rot;
+    private Vector3 startPos;
     private float total_angle;
+    private float totalSliderValue;
 
     [SerializeField]
     private float sliderOutput; //temperature, humidity, or time depending in or out depending on which valve this is //flow_rate
@@ -33,8 +35,10 @@ public class SliderController : MonoBehaviour
     private void Start()
     {
         total_angle = 0f;
+        totalSliderValue = 0f;
 
         start_rot = transform.rotation;
+        startPos = transform.position;
 
         //bathTub = GameObject.Find("BathTub");
     }
@@ -68,44 +72,9 @@ public class SliderController : MonoBehaviour
         }
     }
 
-    public void rotateSlider(float angle)
+    public void moveSlider(float translation)//float angle)
     {
-
-        float max_angle = -180f;
-
-        total_angle += angle;
-
-        //Debug.Log(total_angle);
-
-        if (total_angle < max_angle)
-        {
-            total_angle = max_angle;
-            transform.rotation = Quaternion.AngleAxis(max_angle, Vector3.up) * start_rot;
-           /* if (!flow_ps.isPlaying)
-            {
-                flow_ps.Play();
-            }*/
-        }
-        else if (total_angle > 0)
-        {
-            total_angle = 0;
-            transform.rotation = start_rot;
-           /* if (flow_ps.isPlaying)
-            {
-                flow_ps.Stop();
-            }*/
-        }
-        else
-        {
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.up) * transform.rotation;
-            /*if (!flow_ps.isPlaying)
-            {
-                flow_ps.Play();
-            }*/
-        }
-
-        //update flow rate
-        sliderOutput = -total_angle; // ranges from 0 to 90 right now
+        this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + translation), 0.5f);
 
     }
 

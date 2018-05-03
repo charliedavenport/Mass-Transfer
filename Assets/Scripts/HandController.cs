@@ -131,11 +131,10 @@ public class HandController : MonoBehaviour {
                 break;
             }
 
-            float offset = Vector3.Dot((transform.position - currentSlider.transform.position), Vector3.right);
-            float temp = offset;
-            offset -= prev_offset;
-            prev_offset = temp;
-            currentSlider.rotateSlider(-offset * Mathf.Rad2Deg * 10f);
+            
+            float offset = Vector3.Dot((transform.position - currentSlider.transform.position), Vector3.forward);
+            
+            currentSlider.moveSlider(offset);
 
             yield return new WaitForFixedUpdate();
         }

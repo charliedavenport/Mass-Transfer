@@ -29,6 +29,18 @@ public class CupController : NetworkBehaviour
     private const float width = 3f;
     private const float length = 4f;
 
+    //Equation variables
+    float temp; // T (in Kelvins) //
+    double r; //R 
+    double p; //mmHg 
+    double time; // t
+    double concentrarion; // C_A(liq)
+    double initialHeight; // L0
+    double newHeight; // L1
+    double diffusionCoef;// D_AB //
+    double moleFrac; // Y_AO
+    double relativeHumidity; //Y_AL
+
     //[SyncVar]
     //float flowRate_sync;
 
