@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class CupController : NetworkBehaviour
 {
@@ -23,10 +24,17 @@ public class CupController : NetworkBehaviour
     [SerializeField]
     private float pressureValue;
     [SerializeField]
+    private Slider tempUISlider;
+    [SerializeField]
+    private Slider humidityUISlider;
+    [SerializeField]
     private float valveAngle;
 
     private const float width = 3f;
     private const float length = 4f;
+
+    float tempUIValue;
+    float humidityUIValue;
 
     //Equation variables
     float temp; // T (in Kelvins) //
@@ -51,6 +59,8 @@ public class CupController : NetworkBehaviour
         humidityValue = 0f;
         pressureValue = 0f;
         valveAngle = 0f;
+        tempUIValue = tempUISlider.value;
+        humidityUIValue = humidityUISlider.value;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
