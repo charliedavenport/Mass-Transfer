@@ -21,6 +21,7 @@ public class SliderController : MonoBehaviour
     private Vector3 startPos;
     private float total_angle;
     private float totalSliderValue;
+    private float percentageSliderMoved;
 
     [SerializeField]
     private float sliderOutput; //temperature, humidity, or time depending in or out depending on which valve this is //flow_rate
@@ -83,6 +84,8 @@ public class SliderController : MonoBehaviour
             //TempCubeStart.position;
         Vector3 temporary = Vector3.Lerp(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + translation), 0.5f);
         this.transform.position = new Vector3(temporary.x, temporary.y, Mathf.Clamp(temporary.z, endPos.z, startPos.z));//endPos.position.z));
+        percentageSliderMoved =  1 - ( (this.transform.position.z - endPos.z) / (startPos.z - endPos.z) );
+        sliderOutput = percentageSliderMoved;
         //this.transform.localPosition = 
         //Debug.Log(Mathf.Clamp(transform.position.z, -75, 75));
     }
