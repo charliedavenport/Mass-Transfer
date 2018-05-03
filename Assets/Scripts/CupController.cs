@@ -80,7 +80,7 @@ public class CupController : NetworkBehaviour
         humidityValue = humiditySlider.getSliderOutput();
         pressureValue = pressureSlider.getSliderOutput();
 		L1 = computeL1();
-		Debug.Log("L1 L1 L1 L1 L1 L1!!! " + L1);
+		//Debug.Log("L1 L1 L1 L1 L1 L1!!! " + L1);
 
 		/*float dV = flowInRate - flowOutRate; // difference in volume
         float dy = dV / (width * length); // difference in height;

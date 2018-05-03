@@ -42,7 +42,7 @@ public class SliderController : MonoBehaviour
     private void Start()
     {
         total_angle = 0f;
-        sliderOutput = slider.minValue;
+        sliderOutput = 0;
 
         start_rot = transform.rotation;
         startPos = transform.position;
