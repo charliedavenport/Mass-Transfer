@@ -187,6 +187,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 71738374}
+--- !u!114 &120009854 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114375749982656362, guid: cedbe0c658f7c4647b8b6828fc1207b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 397931903}
+  m_Script: {fileID: 11500000, guid: a25b6d6bff1ac8c4ebd47244dae306c3, type: 3}
 --- !u!114 &136256115 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11463128, guid: 4d293c8e162f3874b982baadd71153d2,
@@ -1176,6 +1182,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 759458166}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &835100426 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114360052448285724, guid: cedbe0c658f7c4647b8b6828fc1207b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 397931903}
+  m_Script: {fileID: 11500000, guid: 6c5fa2fab3568b04ab4a0e5f86951eae, type: 3}
 --- !u!1001 &913376421
 Prefab:
   m_ObjectHideFlags: 0
@@ -1696,6 +1708,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1392418226}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1437153465 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114346961898430056, guid: cedbe0c658f7c4647b8b6828fc1207b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 397931903}
+  m_Script: {fileID: 11500000, guid: a25b6d6bff1ac8c4ebd47244dae306c3, type: 3}
 --- !u!1 &1507473296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,6 +1924,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   water: {fileID: 484631325}
+  bathTub: {fileID: 835100426}
+  valveIn: {fileID: 1437153465}
+  valveOut: {fileID: 120009854}
 --- !u!4 &1911386700
 Transform:
   m_ObjectHideFlags: 0

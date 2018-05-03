@@ -8,16 +8,25 @@ public class DataLogger : MonoBehaviour {
 
 	[SerializeField]
 	private WaterController water;
+	[SerializeField]
+	private BathTubController bathTub;
+	[SerializeField]
+	private ValveController valveIn;
+	[SerializeField]
+	private ValveController valveOut;
 
 	private string timestamp;
 	private string path;
 	private string path_waterLevel;
+	private string path_FlowRates;
+
 
 	private void Start()
 	{
 		timestamp = System.DateTime.Now.ToString("yyyyMMddHHmmss");
 		path = Directory.GetCurrentDirectory() + "\\log_" + timestamp + ".txt";
 		path_waterLevel = Directory.GetCurrentDirectory() + "\\log_" + timestamp + "_waterLevel" + ".txt";
+		path_FlowRates = Directory.GetCurrentDirectory() + "\\log_" + timestamp + "_flowRates" + ".txt";
 
 		if (File.Exists(path))
 		{
@@ -34,6 +43,7 @@ public class DataLogger : MonoBehaviour {
 		}
 
 		StartCoroutine(doLogWaterLevel());
+		StartCoroutine(doLogFlowRates());
 	}//Start
 
 	/**
@@ -67,15 +77,45 @@ public class DataLogger : MonoBehaviour {
 				using (System.IO.StreamWriter file =
 					new System.IO.StreamWriter(path_waterLevel, true))
 				{
-					file.WriteLine(string.Format("Tub water level at t={0}:\t{1}", Time.time, waterLevel));
+					file.WriteLine(string.Format("{0},{1}", Time.time, waterLevel));
 				}
 			}
 			else
 			{
-				string[] contents = { string.Format("Tub water level at t={0}:\t{1}", Time.time, waterLevel) };
+				string[] contents = { string.Format("{0},{1}", Time.time, waterLevel) };
 				System.IO.File.WriteAllLines(path_waterLevel, contents);
 			}
-			yield return new WaitForSeconds(1);
+			yield return new WaitForSeconds(0.25f);
+		}
+
+	}
+
+	/**
+	 * Logs water level every second
+	 */
+	IEnumerator doLogFlowRates()
+	{
+		while (true)
+		{
+
+			float Q_in = valveIn.getFlowRate();
+			float Q_out = valveOut.getFlowRate();
+			float dV = bathTub.get_dV();
+
+			if (File.Exists(path_FlowRates))
+			{
+				using (System.IO.StreamWriter file =
+					new System.IO.StreamWriter(path_FlowRates, true))
+				{
+					file.WriteLine(string.Format("{0},{1},{2},{3}", Time.time, Q_in, Q_out, dV));
+				}
+			}
+			else
+			{
+				string[] contents = { string.Format("{0},{1},{2},{3}", Time.time, Q_in, Q_out, dV) };
+				System.IO.File.WriteAllLines(path_FlowRates, contents);
+			}
+			yield return new WaitForSeconds(0.25f);
 		}
 
 	}

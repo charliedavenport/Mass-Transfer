@@ -45,7 +45,7 @@ public class WaterController : MonoBehaviour {
 
     private void Awake()
     {
-        waterLevel = 0.1f;
+        waterLevel = 0.0f;
         max_y_pos = transform.position.y;
         min_y_pos = 0.2f;
         max_y_scale = transform.localScale.y;

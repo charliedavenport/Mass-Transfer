@@ -98,7 +98,7 @@ public class ValveController : MonoBehaviour {
         }
 
         //update flow rate
-        flow_rate = -total_angle / 900f;
+        flow_rate = -total_angle / 9000f;
 
 	}
 
