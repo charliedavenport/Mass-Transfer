@@ -10,9 +10,9 @@ public class CupController : NetworkBehaviour
     [SerializeField]
     SliderController tempSlider;//cube
     [SerializeField]
-    SliderController humiditySlider;//cube
+    SliderController timeSlider;//cube
     [SerializeField]
-    SliderController pressureSlider;//new
+    SliderController HumiditySlider;//new
     //[SerializeField]
     //WaterController water;
     [SerializeField]
@@ -20,28 +20,34 @@ public class CupController : NetworkBehaviour
     [SerializeField]
     private float tempValue;
     [SerializeField]
-    private float humidityValue;
-    [SerializeField]
+    private float timeValue;
     private float pressureValue;
     [SerializeField]
+    private float humidityValue;
+    [SerializeField]
     private Slider tempUISlider;
+    [SerializeField]
+    private Slider timeUISlider;
     [SerializeField]
     private Slider humidityUISlider;
     [SerializeField]
     private float valveAngle;
 
-	GameObject tea;
-	double teaPos;
+	//GameObject tea;
+    GameObject cupTopGhost;
+    GameObject teaL1;
+    float cupTopPos;
+    float teaL1Pos;
 
 	private const float width = 3f;
     private const float length = 4f;
 
 	/*CONSTANTS*/
-	float CA_liq = 55f; // mol / L
+	float CA_liq = 55.5f; // mol / L
 	float R = 62.3637f; // L mmHg / mol K
 	float P = 760f; // mmHg
-	float D_AB = 0.0016f; // cm2 / day
-	float L0 = 1f; // m
+	float D_AB = .0016f; // cm2 / day
+	float L0 = 2f; // m
 
 	/*NONFIXED VARS*/
 	float temp; // T (in Kelvins) //
@@ -53,6 +59,7 @@ public class CupController : NetworkBehaviour
 	float r_h;
 
 	float tempUIValue;
+    float timeUIValue;
     float humidityUIValue;
 
     private GameManager gm;
@@ -60,34 +67,41 @@ public class CupController : NetworkBehaviour
     private void Awake()
     {
         tempValue = 0f;
+        timeValue = 0f;
         humidityValue = 0f;
         pressureValue = 0f;
         valveAngle = 0f;
         tempUIValue = tempUISlider.value;
+        timeUIValue = timeUISlider.value;
         humidityUIValue = humidityUISlider.value;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-		temp = tempUIValue; //unit: Kelvins 
+		temp = tempUIValue; //unit: Kelvins
+        time = timeUIValue;
 		r_h = humidityUIValue;
-		tea = GameObject.Find("tea");
-		//teaPos = tea.transform.position.y;
+		teaL1 = teaL1 = GameObject.Find("teaL1");
+        cupTopGhost = GameObject.Find("cupTop");
+        //cupTopPos = cupTopGhost.transform.position.y;
+       // Debug.Log("cupTopPos is: " + cupTopPos);
 
-	}
+    }
 
 	private void FixedUpdate()
     {
-
+        //cupTopGhost.
+        //cupTopPos++;
         tempValue = tempSlider.getSliderOutput();
-        humidityValue = humiditySlider.getSliderOutput();
-        pressureValue = pressureSlider.getSliderOutput();
+        timeValue = timeSlider.getSliderOutput();
+        humidityValue = HumiditySlider.getSliderOutput();
+        //pressureValue = pressureSlider.getSliderOutput();
 		L1 = computeL1();
-		//Debug.Log("L1 L1 L1 L1 L1 L1!!! " + L1);
+		
 
-		/*float dV = flowInRate - flowOutRate; // difference in volume
+        /*float dV = flowInRate - flowOutRate; // difference in volume
         float dy = dV / (width * length); // difference in height;
         Debug.Log(dy);
         water.incrementWaterLevel(dy);*/
 
-		if (isLocalPlayer)
+        if (isLocalPlayer)
         {
             /*
             flowInRate = valveIn.getFlowRate();
@@ -109,19 +123,71 @@ public class CupController : NetworkBehaviour
         }
     }
 
+
+
     public float computeL1()
     {
 		temp = tempValue;
+        time = timeValue;
+        r_h = humidityValue;
+      //  float tempTime;
 
 		P_star = Mathf.Pow(10, 29.8605f - (3152.2f / temp) - 7.3037f * Mathf.Log10(temp) + (2.4247f * Mathf.Pow(10, -9) * temp) + (1.809f * Mathf.Pow(10, -6) * temp * temp));
 		Y_A0 = P_star / P;
 		Y_AL = r_h * Y_A0;
 
-		time = Time.time * 24 * 60; // 1 min is 1 day
+		/*time = Time.time * 60 * 24; // 1 min is 1 day
+        Debug.Log("time is = " + time);
+        */
+       // tempTime = 
 
 		L1 = (2 / CA_liq) * ((-P * D_AB * Mathf.Log((1 - Y_A0) / (1 - Y_AL)) * time) / (R * time)) + (L0 * L0);
-		L1 = Mathf.Sqrt(L1);
+        Debug.Log("FIRST L1!!! " + L1);
+        L1 = Mathf.Sqrt(L1);
 
-		return L1;
+        Debug.Log("L1!!! " + L1);
+
+        return L1;
 	}
+
+    public float getTemp() {
+        return temp;
+    }
+
+    public float getTime()
+    {
+        return time;
+    }
+    public float getL1()
+    {
+        return L1;
+    }
+    public float getY_A0()
+    {
+        return Y_A0;
+    }
+    public float getY_AL()
+    {
+        return Y_AL;
+    }
+
+
+    /*
+    public void moveTea(float translation)//float angle)
+    {
+       // Debug.Log(this.transform.position.z);
+        //this.;
+        //TempCubeStart.position;
+        Vector3 temporary = Vector3.Lerp(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + translation), 0.5f);
+
+        this.transform.position = new Vector3(temporary.x, temporary.y, Mathf.Clamp(temporary.z, endPos.z, startPos.z));//endPos.position.z));
+
+        percentageSliderMoved = 1 - ((this.transform.position.z - endPos.z) / (startPos.z - endPos.z));
+
+        slider.value = ((slider.maxValue - slider.minValue) * percentageSliderMoved) + slider.minValue;
+        sliderOutput = slider.value;
+
+        //this.transform.localPosition = 
+        //Debug.Log(Mathf.Clamp(transform.position.z, -75, 75));
+    }*/
 }

@@ -9,39 +9,39 @@ public class CupGUIController : MonoBehaviour
    [SerializeField]
     private Text tempText;
     [SerializeField]
-    private Text humidityText;
+    private Text timeText;
     [SerializeField]
-    private Text pressureText;
+    private Text humidityText;
     [SerializeField]
     private SliderController tempSlider;//was valve_in
     [SerializeField]
-    private SliderController humiditySlider;
+    private SliderController timeSlider;
     [SerializeField]
-    private SliderController pressureSlider;
+    private SliderController humiditySlider;
 
     private float temp;
+    private float time;
     private float humidity;
-    private float pressure;
 
-    public void setFlowRate(float tempInput, float humidityInput, float pressureInput)
+    public void setFlowRate(float tempInput, float timeInput, float humidityInput)
     {
         temp = tempInput;
+        time = timeInput;
         humidity = humidityInput;
-        pressure = pressureInput;
     }
 
     private void Awake()
     {
         temp = 0f;
+        time = 0f;
         humidity = 0f;
-        pressure = 0f;
     }
 
     private void Update()
     {
         tempText.text = "Temperature: " + tempSlider.getSliderOutput().ToString("F");
+        timeText.text = "Time: " + timeSlider.getSliderOutput().ToString("F");
         humidityText.text = "Humidity: " + humiditySlider.getSliderOutput().ToString("F");
-        pressureText.text = "Pressure: " + pressureSlider.getSliderOutput().ToString("F");
 
     }
 
