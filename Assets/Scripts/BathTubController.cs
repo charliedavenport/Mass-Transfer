@@ -24,6 +24,8 @@ public class BathTubController : NetworkBehaviour {
     private const float width = 3f;
     private const float length = 4f;
 
+	private float dV;
+
     [SyncVar]
     float flowRate_sync;
 
@@ -41,7 +43,7 @@ public class BathTubController : NetworkBehaviour {
         flowInRate = valveIn.getFlowRate();
         flowOutRate = valveOut.getFlowRate();
 
-        float dV = flowInRate - flowOutRate; // difference in volume
+        dV = flowInRate - flowOutRate; // difference in volume
         float dy = dV / (width * length); // difference in height;
         Debug.Log(dy);
         water.incrementWaterLevel(dy);
@@ -65,6 +67,11 @@ public class BathTubController : NetworkBehaviour {
             //valveGUI.setFlowRate(flowInRate, flowOutRate);
         }
     }
+
+	public float get_dV()
+	{
+		return dV;
+	}
 
     public void setFlowInRate(float f)
     {

@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public class ValveGUIController : MonoBehaviour {
 
+	[SerializeField]
+	private BathTubController bathTub;
     [SerializeField]
     private Text flowInText;
     [SerializeField]
     private Text flowOutText;
+	[SerializeField]
+	private Text dVText;
     [SerializeField]
     private ValveController valve_in;
     [SerializeField]
@@ -28,8 +32,9 @@ public class ValveGUIController : MonoBehaviour {
     }
 
     private void Update() {
-        flowInText.text = "Flow In Rate: " + valve_in.getFlowRate().ToString("F");
-        flowOutText.text = "Flow Out Rate: " + valve_out.getFlowRate().ToString("F");
+        flowInText.text = "Q_in: " + valve_in.getFlowRate().ToString("F");
+        flowOutText.text = "Q_out: " + valve_out.getFlowRate().ToString("F");
+		dVText.text = "= " + bathTub.get_dV().ToString("F");
 
     }
 

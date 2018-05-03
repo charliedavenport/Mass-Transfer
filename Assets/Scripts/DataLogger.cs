@@ -11,11 +11,13 @@ public class DataLogger : MonoBehaviour {
 
 	private string timestamp;
 	private string path;
+	private string path_waterLevel;
 
 	private void Start()
 	{
 		timestamp = System.DateTime.Now.ToString("yyyyMMddHHmmss");
 		path = Directory.GetCurrentDirectory() + "\\log_" + timestamp + ".txt";
+		path_waterLevel = Directory.GetCurrentDirectory() + "\\log_" + timestamp + "_waterLevel" + ".txt";
 
 		if (File.Exists(path))
 		{
@@ -60,13 +62,18 @@ public class DataLogger : MonoBehaviour {
 
 			float waterLevel = water.getWaterLevel();
 
-			if (File.Exists(path))
+			if (File.Exists(path_waterLevel))
 			{
 				using (System.IO.StreamWriter file =
-					new System.IO.StreamWriter(path, true))
+					new System.IO.StreamWriter(path_waterLevel, true))
 				{
 					file.WriteLine(string.Format("Tub water level at t={0}:\t{1}", Time.time, waterLevel));
 				}
+			}
+			else
+			{
+				string[] contents = { string.Format("Tub water level at t={0}:\t{1}", Time.time, waterLevel) };
+				System.IO.File.WriteAllLines(path_waterLevel, contents);
 			}
 			yield return new WaitForSeconds(1);
 		}
