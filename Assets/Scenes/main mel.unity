@@ -1476,6 +1476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5f62a48c2be124dbc347bb68782194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tea: {fileID: 0}
+  teaPos: 0
   tempSlider: {fileID: 0}
   humiditySlider: {fileID: 0}
   pressureSlider: {fileID: 0}
@@ -1484,6 +1486,70 @@ MonoBehaviour:
   humidityValue: 0
   pressureValue: 0
   valveAngle: 0
+  temp: 0
+  r: 0
+  p: 0
+  time: 0
+  concentrarion: 0
+  initialHeight: 0
+  newHeight: 0
+  diffusionCoef: 0
+  moleFrac: 0
+  relativeHumidity: 0
+  gm: {fileID: 0}
+--- !u!114 &1062685995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062685992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d9e1f7e51b813439c30f6af784e855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempSlider: {fileID: 0}
+  humiditySlider: {fileID: 0}
+  pressureSlider: {fileID: 0}
+  cupGUI: {fileID: 0}
+  tempValue: 0
+  humidityValue: 0
+  pressureValue: 0
+  tempUISlider: {fileID: 0}
+  humidityUISlider: {fileID: 0}
+  valveAngle: 0
+--- !u!114 &1062685996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062685992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 64
+    i1: 11
+    i2: 69
+    i3: 244
+    i4: 245
+    i5: 125
+    i6: 45
+    i7: 148
+    i8: 139
+    i9: 89
+    i10: 126
+    i11: 207
+    i12: 44
+    i13: 93
+    i14: 67
+    i15: 254
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1 &1078520650
 GameObject:
   m_ObjectHideFlags: 0
