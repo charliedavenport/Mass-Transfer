@@ -33,7 +33,9 @@ public class cupVarGUI : MonoBehaviour {
         formula.text = "C_A(liq)((" + cup.getL1().ToString("0.00000") + ")^2 - (L_0)^2    =    (-PD_ABln((1-" + cup.getY_A0().ToString("0.00000")
            + ")/1-" + cup.getY_AL().ToString("0.00000") + "))" + cup.getTime().ToString("0.00000") 
            + "\n_____________________         _________________________________" 
-           + "\n          2                                                R" + cup.getTemp().ToString("0.00000");
+           + "\n          2                                                R" + cup.getTemp().ToString("0.00000") 
+           + "\n\nY_AL = r_h(Y_AO)\n" + cup.getY_AL().ToString("0.00000") + " = " + cup.getr_h().ToString("0.00000")
+           + "(" + cup.getY_A0().ToString("0.00000") + ")";
 
 
 

@@ -171,6 +171,11 @@ public class CupController : NetworkBehaviour
         return Y_AL;
     }
 
+    public float getr_h()
+    {
+        return r_h;
+    }
+
 
     /*
     public void moveTea(float translation)//float angle)
