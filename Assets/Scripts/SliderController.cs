@@ -74,8 +74,9 @@ public class SliderController : MonoBehaviour
 
     public void moveSlider(float translation)//float angle)
     {
-        this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + translation), 0.5f);
-
+        this.transform.position = /*Vector3 temporary = */Vector3.Lerp(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + translation), 0.5f);
+        //this.transform.localPosition = new Vector3(temporary.x, temporary.y, Mathf.Clamp(temporary.z, -75, 75));
+        //Debug.Log(Mathf.Clamp(transform.position.z, -75, 75));
     }
 
     public float getSliderOutput() { return sliderOutput; }
