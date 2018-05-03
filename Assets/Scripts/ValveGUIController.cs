@@ -32,9 +32,9 @@ public class ValveGUIController : MonoBehaviour {
     }
 
     private void Update() {
-        flowInText.text = "Q_in: " + valve_in.getFlowRate().ToString("F");
-        flowOutText.text = "Q_out: " + valve_out.getFlowRate().ToString("F");
-		dVText.text = "= " + bathTub.get_dV().ToString("F") + " m^3 / s ";
+        flowInText.text = "Q_in: " + valve_in.getFlowRate().ToString("0.0000");
+        flowOutText.text = "Q_out: " + valve_out.getFlowRate().ToString("0.0000");
+		dVText.text = "= " + bathTub.get_dV().ToString("0.0000") + " m^3 / s ";
 
     }
 
