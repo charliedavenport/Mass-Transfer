@@ -14,6 +14,8 @@ public class SliderController : MonoBehaviour
     private Material defaultMat;
     [SerializeField]
     private Material selectedMat;
+    //[SerializeField]
+    //private Transform endPos;
     private Quaternion start_rot;
     private Vector3 startPos;
     private float total_angle;
@@ -74,8 +76,12 @@ public class SliderController : MonoBehaviour
 
     public void moveSlider(float translation)//float angle)
     {
-        this.transform.position = /*Vector3 temporary = */Vector3.Lerp(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + translation), 0.5f);
-        //this.transform.localPosition = new Vector3(temporary.x, temporary.y, Mathf.Clamp(temporary.z, -75, 75));
+        Debug.Log(this.transform.position.z);
+        //this.;
+            //TempCubeStart.position;
+        Vector3 temporary = Vector3.Lerp(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + translation), 0.5f);
+        this.transform.position = new Vector3(temporary.x, temporary.y, Mathf.Clamp(temporary.z, -75, startPos.z));//endPos.position.z));
+        //this.transform.localPosition = 
         //Debug.Log(Mathf.Clamp(transform.position.z, -75, 75));
     }
 

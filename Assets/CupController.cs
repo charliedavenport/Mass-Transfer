@@ -6,7 +6,6 @@ using UnityEngine.Networking;
 public class CupController : NetworkBehaviour
 {
 
-
     [SerializeField]
     SliderController tempSlider;//valveIn
     [SerializeField]
@@ -89,46 +88,46 @@ public class CupController : NetworkBehaviour
         }
     }
 
-	public float computeL1()
-	{
-		float CA_liq = 55f; // mol / L
-		float R = 62.3637f; // L mmHg / mol K
-		float P = 760f; // mmHg
-		float D_AB = 0.0016f; // cm2 / day
-		float L_0 = 1f; // m
-		float r_h = 0.25f; // %
-
-		float T = tempValue;
-
-		float P_star = Mathf.Pow(10, 29.8605f - (3152.2f / T) - 7.3037f * Mathf.Log10(T) + (2.4247f * Mathf.Pow(10, -9) * T) + (1.809f * Mathf.Pow(10, -6) * T * T));
-		float Y_a0 = P_star / P;
-		float Y_aL = r_h * Y_a0;
-
-		float t = Time.time;
-
-		float L1 = (2 / CA_liq) * ((-P * D_AB * Mathf.Log((1 - Y_a0) / (1 - Y_aL)) * t) / (R * T)) + (L_0 * L_0);
-		L1 = Mathf.Sqrt(L1);
-
-		return L1;
-	}
-
-
-/*
-    public void setFlowInRate(float f)
+    public float computeL1()
     {
-        flowInRate = f;
-    }
-    public void setFlowOutrate(float f)
-    {
-        flowOutRate = f;
+        float CA_liq = 55f; // mol / L
+        float R = 62.3637f; // L mmHg / mol K
+        float P = 760f; // mmHg
+        float D_AB = 0.0016f; // cm2 / day
+        float L_0 = 1f; // m
+        float r_h = 0.25f; // %
+
+        float T = tempValue;
+
+        float P_star = Mathf.Pow(10, 29.8605f - (3152.2f / T) - 7.3037f * Mathf.Log10(T) + (2.4247f * Mathf.Pow(10, -9) * T) + (1.809f * Mathf.Pow(10, -6) * T * T));
+        float Y_a0 = P_star / P;
+        float Y_aL = r_h * Y_a0;
+
+        float t = Time.time;
+
+        float L1 = (2 / CA_liq) * ((-P * D_AB * Mathf.Log((1 - Y_a0) / (1 - Y_aL)) * t) / (R * T)) + (L_0 * L_0);
+        L1 = Mathf.Sqrt(L1);
+
+        return L1;
     }
 
-    [Command]
-    void CmdSyncBathTub(float fRate)
-    {
-        flowInRate = fRate;
-        //set syncvars
-        flowRate_sync = fRate;
-    }*/
+
+    /*
+        public void setFlowInRate(float f)
+        {
+            flowInRate = f;
+        }
+        public void setFlowOutrate(float f)
+        {
+            flowOutRate = f;
+        }
+
+        [Command]
+        void CmdSyncBathTub(float fRate)
+        {
+            flowInRate = fRate;
+            //set syncvars
+            flowRate_sync = fRate;
+        }*/
 
 }
