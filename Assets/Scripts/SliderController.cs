@@ -14,8 +14,9 @@ public class SliderController : MonoBehaviour
     private Material defaultMat;
     [SerializeField]
     private Material selectedMat;
-    //[SerializeField]
-    //private Transform endPos;
+    [SerializeField]
+    private Transform endTransform;
+    private Vector3 endPos;
     private Quaternion start_rot;
     private Vector3 startPos;
     private float total_angle;
@@ -41,6 +42,7 @@ public class SliderController : MonoBehaviour
 
         start_rot = transform.rotation;
         startPos = transform.position;
+        endPos = endTransform.position;
 
         //bathTub = GameObject.Find("BathTub");
     }
@@ -80,7 +82,7 @@ public class SliderController : MonoBehaviour
         //this.;
             //TempCubeStart.position;
         Vector3 temporary = Vector3.Lerp(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + translation), 0.5f);
-        this.transform.position = new Vector3(temporary.x, temporary.y, Mathf.Clamp(temporary.z, -75, startPos.z));//endPos.position.z));
+        this.transform.position = new Vector3(temporary.x, temporary.y, Mathf.Clamp(temporary.z, endPos.z, startPos.z));//endPos.position.z));
         //this.transform.localPosition = 
         //Debug.Log(Mathf.Clamp(transform.position.z, -75, 75));
     }
