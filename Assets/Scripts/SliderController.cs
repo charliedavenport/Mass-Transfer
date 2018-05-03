@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SliderController : MonoBehaviour
 {
@@ -20,7 +21,10 @@ public class SliderController : MonoBehaviour
     private Quaternion start_rot;
     private Vector3 startPos;
     private float total_angle;
-    private float totalSliderValue;
+    //private float totalSliderValue;
+    private float percentageSliderMoved;
+    [SerializeField]
+    private Slider slider;
 
     [SerializeField]
     private float sliderOutput; //temperature, humidity, or time depending in or out depending on which valve this is //flow_rate
@@ -38,7 +42,7 @@ public class SliderController : MonoBehaviour
     private void Start()
     {
         total_angle = 0f;
-        totalSliderValue = 0f;
+        sliderOutput = slider.minValue;
 
         start_rot = transform.rotation;
         startPos = transform.position;
@@ -83,6 +87,11 @@ public class SliderController : MonoBehaviour
             //TempCubeStart.position;
         Vector3 temporary = Vector3.Lerp(this.transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z + translation), 0.5f);
         this.transform.position = new Vector3(temporary.x, temporary.y, Mathf.Clamp(temporary.z, endPos.z, startPos.z));//endPos.position.z));
+        percentageSliderMoved =  1 - ( (this.transform.position.z - endPos.z) / (startPos.z - endPos.z) );
+
+        slider.value = ( (slider.maxValue - slider.minValue) * percentageSliderMoved ) + slider.minValue;
+        sliderOutput = slider.value;
+        
         //this.transform.localPosition = 
         //Debug.Log(Mathf.Clamp(transform.position.z, -75, 75));
     }
